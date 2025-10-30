@@ -6,6 +6,9 @@ C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_Syste
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.csproj.CoreCompileInputs.cache
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.sourcelink.json
+C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\appsettings.json
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\Examination_System.staticwebassets.endpoints.json
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\Examination_System.exe
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\Examination_System.deps.json

@@ -169,7 +169,7 @@ namespace Examination_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Instructors");
+                    b.ToTable("Question");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Question", b =>

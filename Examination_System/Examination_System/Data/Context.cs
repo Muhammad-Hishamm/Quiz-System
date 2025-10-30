@@ -95,13 +95,13 @@ namespace Examination_System.Data
         }
 
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Exam> Exams { get; set; }
-        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Instructor> Question { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Result> Results { get; set; }
+        public DbSet<Exam> Exams { get; set; }
 
         public DbSet<StudentCourse> StudentCourses { get; set; }
         public DbSet<StudentExam> StudentExams { get; set; }

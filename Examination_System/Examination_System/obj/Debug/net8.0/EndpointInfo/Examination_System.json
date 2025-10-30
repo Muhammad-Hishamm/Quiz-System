@@ -4,6 +4,678 @@
     "title": "Examination_System",
     "version": "1.0"
   },
-  "paths": { },
-  "components": { }
+  "paths": {
+    "/api/Course": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Course"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/{id}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Exam": {
+      "get": {
+        "tags": [
+          "Exam"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Exam"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Exam/{id}": {
+      "get": {
+        "tags": [
+          "Exam"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Exam"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { }
+            },
+            "text/json": {
+              "schema": { }
+            },
+            "application/*+json": {
+              "schema": { }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Exam"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Instructor": {
+      "get": {
+        "tags": [
+          "Instructor"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Instructor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Instructor/{id}": {
+      "get": {
+        "tags": [
+          "Instructor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Instructor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Instructor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Instructor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Choice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "choiceBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Course": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditHours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "instructor": {
+            "$ref": "#/components/schemas/Instructor"
+          },
+          "exams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Exam"
+            },
+            "nullable": true
+          },
+          "studentCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentCourse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Exam": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ExamType"
+          },
+          "numberOfQuestions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          },
+          "examQuestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExamQuestion"
+            },
+            "nullable": true
+          },
+          "studentExams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentExam"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExamQuestion": {
+        "type": "object",
+        "properties": {
+          "examId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exam": {
+            "$ref": "#/components/schemas/Exam"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "question": {
+            "$ref": "#/components/schemas/Question"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExamType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Instructor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "courses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Course"
+            },
+            "nullable": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Question"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "level": {
+            "$ref": "#/components/schemas/QuestionLevel"
+          },
+          "questionBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instructor": {
+            "$ref": "#/components/schemas/Instructor"
+          },
+          "choices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Choice"
+            },
+            "nullable": true
+          },
+          "examQuestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExamQuestion"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionLevel": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Student": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "studentCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentCourse"
+            },
+            "nullable": true
+          },
+          "studentExams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentExam"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentCourse": {
+        "type": "object",
+        "properties": {
+          "studentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          }
+        },
+        "additionalProperties": false
+      },
+      "StudentExam": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "isSubmitted": {
+            "type": "boolean"
+          },
+          "submissionTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "studentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "examId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "exam": {
+            "$ref": "#/components/schemas/Exam"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
 }

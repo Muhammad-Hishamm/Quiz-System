@@ -1,1 +1,239 @@
-[]
+[
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Get",
+    "RelativePath": "api/Course",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Create",
+    "RelativePath": "api/Course",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "course",
+        "Type": "Examination_System.Models.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "GetById",
+    "RelativePath": "api/Course/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Update",
+    "RelativePath": "api/Course/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedCourse",
+        "Type": "Examination_System.Models.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Delete",
+    "RelativePath": "api/Course/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Exam.ExamController",
+    "Method": "Get",
+    "RelativePath": "api/Exam",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Exam.ExamController",
+    "Method": "Create",
+    "RelativePath": "api/Exam",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exam",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Exam.ExamController",
+    "Method": "GetById",
+    "RelativePath": "api/Exam/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Exam.ExamController",
+    "Method": "Update",
+    "RelativePath": "api/Exam/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedExam",
+        "Type": "System.Object",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Exam.ExamController",
+    "Method": "Delete",
+    "RelativePath": "api/Exam/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Instructor.InstructorController",
+    "Method": "Get",
+    "RelativePath": "api/Instructor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Instructor.InstructorController",
+    "Method": "Create",
+    "RelativePath": "api/Instructor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "instructor",
+        "Type": "Examination_System.Models.Instructor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Instructor.InstructorController",
+    "Method": "GetbyId",
+    "RelativePath": "api/Instructor/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Instructor.InstructorController",
+    "Method": "Update",
+    "RelativePath": "api/Instructor/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedInstructor",
+        "Type": "Examination_System.Models.Instructor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Instructor.InstructorController",
+    "Method": "Delete",
+    "RelativePath": "api/Instructor/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
