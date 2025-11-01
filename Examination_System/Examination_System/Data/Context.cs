@@ -69,7 +69,7 @@ namespace Examination_System.Data
                 .OnDelete(DeleteBehavior.Restrict); //  prevents cascade path
 
 
-            // Question → Choice (1-to-Many)
+            // Instructors → Choice (1-to-Many)
             modelBuilder.Entity<Question>()
                 .HasMany(q => q.Choices)
                 .WithOne(c => c.Question)
@@ -87,7 +87,7 @@ namespace Examination_System.Data
                 .WithOne(c => c.Instructor)
                 .HasForeignKey(c => c.InstructorId);
 
-            // Instructor → Question (1-to-Many)
+            // Instructor → Instructors (1-to-Many)
             modelBuilder.Entity<Instructor>()
                 .HasMany(i => i.Questions)
                 .WithOne(q => q.Instructor)
@@ -95,7 +95,7 @@ namespace Examination_System.Data
         }
 
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Instructor> Question { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Student> Students { get; set; }

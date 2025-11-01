@@ -6,7 +6,7 @@
         public string ChoiceBody { get; set; }
         public bool IsCorrect { get; set; }
 
-        // Foreign key to Question
+        // Foreign key to Instructors
         public int QuestionId { get; set; }
         public Question Question { get; set; }
     }

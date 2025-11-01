@@ -7,6 +7,8 @@ namespace Examination_System
     {
         public static void Main(string[] args)
         {
+            Context context = new Context();
+            Examination_System.Data.DataInitializer.Initialize(context);
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.

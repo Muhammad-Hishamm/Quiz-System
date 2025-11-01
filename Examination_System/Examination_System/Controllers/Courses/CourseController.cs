@@ -1,4 +1,5 @@
 ﻿using Examination_System.Data;
+using Examination_System.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,14 +13,14 @@ namespace Examination_System.Controllers.Courses
         Context context = new Context();
         // GET: api/Course
         [HttpGet]
-        public IActionResult Get()
+        public IEnumerable<Course> Get()
         {
             var courses = context.Courses.ToList();
             if (courses == null || courses.Count == 0)
             {
-                return NotFound("No courses found.");
+                return null;
             }
-            return Ok("Get method in Course Controller is working!");
+            return courses;
         }
 
         // GET: api/Course/1

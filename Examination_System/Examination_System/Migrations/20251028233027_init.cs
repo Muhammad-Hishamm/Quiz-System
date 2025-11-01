@@ -12,7 +12,7 @@ namespace Examination_System.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Question",
+                name: "Instructors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -57,7 +57,7 @@ namespace Examination_System.Migrations
                     table.ForeignKey(
                         name: "FK_Courses_Instructors_InstructorId",
                         column: x => x.InstructorId,
-                        principalTable: "Question",
+                        principalTable: "Instructors",
                         principalColumn: "Id");
                 });
 
@@ -77,7 +77,7 @@ namespace Examination_System.Migrations
                     table.ForeignKey(
                         name: "FK_Questions_Instructors_InstructorId",
                         column: x => x.InstructorId,
-                        principalTable: "Question",
+                        principalTable: "Instructors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -322,7 +322,7 @@ namespace Examination_System.Migrations
                 name: "Courses");
 
             migrationBuilder.DropTable(
-                name: "Question");
+                name: "Instructors");
         }
     }
 }

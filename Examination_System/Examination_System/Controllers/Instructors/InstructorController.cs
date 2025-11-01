@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Examination_System.Models;
 
 
-namespace Examination_System.Controllers.Instructor
+namespace Examination_System.Controllers.Instructors
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,7 +16,7 @@ namespace Examination_System.Controllers.Instructor
         [HttpGet]
         public IActionResult Get()
         {
-            var instructors = context.Question.ToList();
+            var instructors = context.Instructors.ToList();
             if (instructors == null || instructors.Count == 0)
             {
                 return NotFound("No instructors found.");
@@ -28,7 +28,7 @@ namespace Examination_System.Controllers.Instructor
         [HttpGet("{id}")]
         public IActionResult GetbyId(int id)
         {
-            var instructor = context.Question.Find(id);
+            var instructor = context.Instructors.Find(id);
             if(instructor == null)
             {
                 return NotFound($"Instructor with ID {id} not found.");
@@ -48,7 +48,7 @@ namespace Examination_System.Controllers.Instructor
             {
                 return BadRequest(ModelState);
             }
-            context.Question.Add(instructor);
+            context.Instructors.Add(instructor);
             context.SaveChanges();
             return Ok("Create method in Instructor Controller is working!");
         }
@@ -57,7 +57,7 @@ namespace Examination_System.Controllers.Instructor
         [HttpPut("{id}")]
         public IActionResult Update(int id,Models.Instructor updatedInstructor)
         {
-            var instructor = context.Question.Find(id);
+            var instructor = context.Instructors.Find(id);
 
             if(instructor == null)
             {
@@ -67,7 +67,7 @@ namespace Examination_System.Controllers.Instructor
             instructor.Email = updatedInstructor.Email;
             instructor.Department = updatedInstructor.Department;
 
-            context.Question.Update(instructor);
+            context.Instructors.Update(instructor);
             context.SaveChanges();
 
             return Ok($"Update method in Instructor Controller is working for ID: {id}");
@@ -77,12 +77,12 @@ namespace Examination_System.Controllers.Instructor
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var instructor = context.Question.Find(id);
+            var instructor = context.Instructors.Find(id);
             if(instructor == null)
             {
                 return NotFound($"Instructor with ID {id} not found.");
             }
-            context.Question.Remove(instructor);
+            context.Instructors.Remove(instructor);
             context.SaveChanges();
             return Ok($"Delete method in Instructor Controller is working for ID: {id}");
         }

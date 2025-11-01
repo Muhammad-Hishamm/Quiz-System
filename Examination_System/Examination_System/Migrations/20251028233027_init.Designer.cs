@@ -169,10 +169,10 @@ namespace Examination_System.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Question");
+                    b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Examination_System.Models.Question", b =>
+            modelBuilder.Entity("Examination_System.Models.Students", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -294,13 +294,13 @@ namespace Examination_System.Migrations
 
             modelBuilder.Entity("Examination_System.Models.Choice", b =>
                 {
-                    b.HasOne("Examination_System.Models.Question", "Question")
+                    b.HasOne("Examination_System.Models.Students", "Students")
                         .WithMany("Choices")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Question");
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Course", b =>
@@ -320,7 +320,7 @@ namespace Examination_System.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Examination_System.Models.Question", "Question")
+                    b.HasOne("Examination_System.Models.Students", "Students")
                         .WithMany("ExamQuestions")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -328,7 +328,7 @@ namespace Examination_System.Migrations
 
                     b.Navigation("Exam");
 
-                    b.Navigation("Question");
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Feedback", b =>
@@ -342,7 +342,7 @@ namespace Examination_System.Migrations
                     b.Navigation("Result");
                 });
 
-            modelBuilder.Entity("Examination_System.Models.Question", b =>
+            modelBuilder.Entity("Examination_System.Models.Students", b =>
                 {
                     b.HasOne("Examination_System.Models.Instructor", "Instructor")
                         .WithMany("Questions")
@@ -423,7 +423,7 @@ namespace Examination_System.Migrations
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("Examination_System.Models.Question", b =>
+            modelBuilder.Entity("Examination_System.Models.Students", b =>
                 {
                     b.Navigation("Choices");
 

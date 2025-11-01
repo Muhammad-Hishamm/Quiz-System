@@ -11,7 +11,7 @@ namespace Examination_System.Controllers.Questions
     public class QuestionController : ControllerBase
     {
         Context context = new Context();
-        // GET: api/Question
+        // GET: api/Questions
         [HttpGet]
         public IActionResult Get()
         {
@@ -23,7 +23,7 @@ namespace Examination_System.Controllers.Questions
             return Ok(questions);
         }
 
-        // GET: api/Question/5
+        // GET: api/Questions/5
         [HttpGet("{id}")]
         public IActionResult GetbyId(int id)
         {
@@ -37,7 +37,7 @@ namespace Examination_System.Controllers.Questions
 
         // POST: api/question
         [HttpPost]
-        public IActionResult Create(Models.Question question)
+        public IActionResult Create(Question question)
         {
             if (question == null)
             {
@@ -54,13 +54,13 @@ namespace Examination_System.Controllers.Questions
 
         // PUT: api/question/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id,Models.Question updatedQuestion)
+        public IActionResult Update(int id,Question updatedQuestion)
         {
             var question = context.Questions.Find(id);
 
             if (question == null)
             {
-                return NotFound($"Question with ID {id} not found.");
+                return NotFound($"Questions with ID {id} not found.");
             }
            question.Instructor = updatedQuestion.Instructor;
             question.Level = updatedQuestion.Level;
@@ -70,7 +70,7 @@ namespace Examination_System.Controllers.Questions
             return Ok($"Update method in Question Controller is working for ID: {id}");
         }
 
-        // Delete:api/Question/5
+        // Delete:api/Questions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

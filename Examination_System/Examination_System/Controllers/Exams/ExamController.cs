@@ -36,7 +36,7 @@ namespace Examination_System.Controllers.Exams
         }
 
         [HttpPost]
-        public IActionResult Create(Models.Exam exam)
+        public IActionResult Create(Exam exam)
         {
 
             if (exam == null)
@@ -54,7 +54,7 @@ namespace Examination_System.Controllers.Exams
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, dynamic updatedExam)
+        public IActionResult Update(int id, Exam updatedExam)
         {
             var exam = context.Exams.Find(id);
             if (exam == null)
