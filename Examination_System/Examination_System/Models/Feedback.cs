@@ -1,8 +1,7 @@
 ﻿namespace Examination_System.Models
 {
-    public class Feedback
+    public class Feedback : BaseModel
     {
-        public int id { get; set; }
         public int Rating { get; set; }
         public string Comments { get; set; }
         public int ResultId { get; set; }

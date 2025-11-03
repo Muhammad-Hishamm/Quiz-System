@@ -1,5 +1,6 @@
 ﻿using Examination_System.Data;
 using Examination_System.Models;
+using Examination_System.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,13 +11,17 @@ namespace Examination_System.Controllers.Courses
     [ApiController]
     public class CourseController : ControllerBase
     {
-        Context context = new Context();
+        CourseRepository _courseRepository;
+        public CourseController()
+        {
+            _courseRepository = new CourseRepository();
+        }
         // GET: api/Course
         [HttpGet]
-        public IEnumerable<Course> Get()
+        public IQueryable<Course> Get()
         {
-            var courses = context.Courses.ToList();
-            if (courses == null || courses.Count == 0)
+            var courses =  _courseRepository.GetAll();
+            if (courses == null)
             {
                 return null;
             }
@@ -24,20 +29,19 @@ namespace Examination_System.Controllers.Courses
         }
 
         // GET: api/Course/1
-
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<Course> GetById(int id)
         {
-            var course = context.Courses.Find(id);
-            if(course == null)
+            var course = await  _courseRepository.GetByIdAsync(id);
+            if (course == null)
             {
-                return NotFound($"Course with id {id} is not found.");
+                return null;
             }
-            return Ok($"GetById method in Course Controller is working for ID: {id}");
+            return course;
         }
 
         [HttpPost]
-        public IActionResult Create(Models.Course course) 
+        public async Task<IActionResult> Create(Course course)
         {
             if (course == null)
             {
@@ -47,42 +51,29 @@ namespace Examination_System.Controllers.Courses
             {
                 return BadRequest(ModelState);
             }
-
-            context.Courses.Add(course);
-            context.SaveChanges();
+            await _courseRepository.Add(course);
             return Ok("Create method in Course Controller is working!");
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id , Models.Course updatedCourse)
-        {
-            var course = context.Courses.Find(id);
-            if (course ==  null)
-            {
-                return NotFound($"the course with id {id} is not exist ya batooot");
-            }
-            if (updatedCourse == null)
-            {
-                return BadRequest($"the updated course is null");
-            }
-            course.CreditHours = updatedCourse.CreditHours;
-            course.Description = updatedCourse.Description;
-            course.Name = updatedCourse.Name;
-            context.Courses.Update(course);
-            context.SaveChanges();
-            return Ok($"the course with id {id} is updated successully");
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Course updatedCourse)
+        {
+            if (updatedCourse == null)
+                return BadRequest("this course is null");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("this course doesn't follow the Course Constraints");
+            }
+            await _courseRepository.Update(updatedCourse);
+            return Ok($"the course with id {id} is updated successully");
         }
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var course = context.Courses.Find(id);
-            if(course == null)
-            {
-                return NotFound($"the course with id {id} is not found");
-            }
+            await _courseRepository.Delete(id);
             return Ok($"the couruse with id {id} is deleted successully");
         }
     }

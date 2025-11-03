@@ -1,7 +1,8 @@
 ﻿using Examination_System.Data;
+using Examination_System.Models;
+using Examination_System.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Examination_System.Models;
 
 namespace Examination_System.Controllers.Exams
 {
@@ -9,81 +10,70 @@ namespace Examination_System.Controllers.Exams
     [ApiController]
     public class ExamController : ControllerBase
     {
-        Context context = new Context();
+        GeneralRepository<Exam> _examRepository;
+        public ExamController()
+        {
+            _examRepository = new GeneralRepository<Exam>();
+        }
         // GET: api/Exam
         [HttpGet]
-        public IActionResult Get()
+        public IQueryable<Exam> Get()
         {
-            var exams = context.Exams.ToList();
-            if (exams == null || exams.Count == 0)
+            var courses = _examRepository.GetAll();
+            if (courses == null)
             {
-                return NotFound("No exams found.");
+                return null;
             }
-            return Ok("Get method in exam Controller is working!");
+            return courses;
         }
 
         // GET: api/Exam/1
-
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<Exam> GetById(int id)
         {
-            var exam = context.Exams.Find(id);
+            var exam = await _examRepository.GetByIDAsync(id);
             if (exam == null)
             {
-                return NotFound($"Exam with id {id} is not found.");
+                return null;
             }
-            return Ok($"GetById method in Exam Controller is working for ID: {id}");
+            return exam;
         }
 
         [HttpPost]
-        public IActionResult Create(Exam exam)
+        public async Task<IActionResult> Create(Exam exam)
         {
-
             if (exam == null)
             {
-                return NotFound("Exam data is null.");
+                return BadRequest("Exam data is null.");
             }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            context.Exams.Add(exam);
-            context.SaveChanges();
+            await _examRepository.CreateAsync(exam);
             return Ok("Create method in Exam Controller is working!");
         }
 
+
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Exam updatedExam)
+        public async Task<IActionResult> Update(int id, Exam updatedExam)
         {
-            var exam = context.Exams.Find(id);
-            if (exam == null)
-            {
-                return NotFound($"the Exam with id {id} is not exist ya batooot");
-            }
             if (updatedExam == null)
+                return BadRequest("this exam is null");
+            if (!ModelState.IsValid)
             {
-                return BadRequest($"the updated exam is null");
+                return BadRequest("this exam doesn't follow the exam Constraints");
             }
-            exam.Course = updatedExam.Course;
-            exam.Title = updatedExam.Title;
-
-            context.Exams.Update(exam);
-            context.SaveChanges();
-            return Ok($"the exam with id {id} is updated successully");
-
+            await _examRepository.UpdateAsync(updatedExam);
+            return Ok($"the Exam with id {id} is updated successully");
         }
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var exam = context.Exams.Find(id);
-            if (exam == null)
-            {
-                return NotFound($"the Exam with id {id} is not found");
-            }
-            return Ok($"the exam with id {id} is deleted successully");
+            await _examRepository.DeleteAsync(id);
+            return Ok($"the couruse with id {id} is deleted successully");
         }
 
     }

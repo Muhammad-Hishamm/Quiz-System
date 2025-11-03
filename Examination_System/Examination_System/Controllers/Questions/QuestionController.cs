@@ -1,5 +1,6 @@
 ﻿using Examination_System.Data;
 using Examination_System.Models;
+using Examination_System.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,34 +11,37 @@ namespace Examination_System.Controllers.Questions
     [ApiController]
     public class QuestionController : ControllerBase
     {
-        Context context = new Context();
-        // GET: api/Questions
-        [HttpGet]
-        public IActionResult Get()
+        GeneralRepository<Question> _questionRepository;
+        public QuestionController()
         {
-            var questions = context.Questions.ToList();
-            if (questions == null || questions.Count == 0)
+            _questionRepository = new GeneralRepository<Question>();
+        }
+        // GET: api/Question
+        [HttpGet]
+        public IQueryable<Question> Get()
+        {
+            var questions = _questionRepository.GetAll();
+            if (questions == null)
             {
-                return NotFound("No Questions found.");
+                return null;
             }
-            return Ok(questions);
+            return questions;
         }
 
-        // GET: api/Questions/5
+        // GET: api/Question/1
         [HttpGet("{id}")]
-        public IActionResult GetbyId(int id)
+        public async Task<Question> GetById(int id)
         {
-            var question = context.Questions.Find(id);
+            var question = await _questionRepository.GetByIDAsync(id);
             if (question == null)
             {
-                return NotFound($"question with ID {id} not found.");
+                return null;
             }
-            return Ok($"GetById method in question Controller is working for ID: {id}");
+            return question;
         }
 
-        // POST: api/question
         [HttpPost]
-        public IActionResult Create(Question question)
+        public async Task<IActionResult> Create(Question question)
         {
             if (question == null)
             {
@@ -47,41 +51,30 @@ namespace Examination_System.Controllers.Questions
             {
                 return BadRequest(ModelState);
             }
-            context.Questions.Add(question);
-            context.SaveChanges();
-            return Ok("Create method in question Controller is working!");
+            await _questionRepository.CreateAsync(question);
+            return Ok("Create method in Question Controller is working!");
         }
 
-        // PUT: api/question/5
+
         [HttpPut("{id}")]
-        public IActionResult Update(int id,Question updatedQuestion)
+        public async Task<IActionResult> Update(int id, Question updatedQuestion)
         {
-            var question = context.Questions.Find(id);
-
-            if (question == null)
+            if (updatedQuestion == null)
+                return BadRequest("this question is null");
+            if (!ModelState.IsValid)
             {
-                return NotFound($"Questions with ID {id} not found.");
+                return BadRequest("this question doesn't follow the question Constraints");
             }
-           question.Instructor = updatedQuestion.Instructor;
-            question.Level = updatedQuestion.Level;
-            context.Questions.Add(question);
-            context.SaveChanges();
-
-            return Ok($"Update method in Question Controller is working for ID: {id}");
+            await _questionRepository.UpdateAsync(updatedQuestion);
+            return Ok($"the Question with id {id} is updated successully");
         }
 
-        // Delete:api/Questions/5
+
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var question = context.Questions.Find(id);
-            if (question == null)
-            {
-                return NotFound($"question with ID {id} not found.");
-            }
-            context.Questions.Remove(question);
-            context.SaveChanges();
-            return Ok($"Delete method in question Controller is working for ID: {id}");
+            await _questionRepository.DeleteAsync(id);
+            return Ok($"the question with id {id} is deleted successully");
         }
     }
 }

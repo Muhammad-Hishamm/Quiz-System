@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Examination_System.Models.Course, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Linq.IQueryable\u00601[[Examination_System.Models.Course, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -49,7 +49,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.Models.Course",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Courses.CourseController",
@@ -96,7 +106,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Linq.IQueryable\u00601[[Exam, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
@@ -128,7 +148,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Exam",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
@@ -175,7 +205,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Linq.IQueryable\u00601[[Examination_System.Models.Instructor, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
@@ -186,7 +226,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "instructor",
+        "Name": "instrucor",
         "Type": "Examination_System.Models.Instructor",
         "IsRequired": true
       }
@@ -195,7 +235,7 @@
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
-    "Method": "GetbyId",
+    "Method": "GetById",
     "RelativePath": "api/Instructor/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -207,7 +247,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.Models.Instructor",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
@@ -254,7 +304,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Linq.IQueryable\u00601[[Examination_System.Models.Question, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
@@ -274,7 +334,7 @@
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
-    "Method": "GetbyId",
+    "Method": "GetById",
     "RelativePath": "api/Question/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -286,7 +346,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.Models.Question",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
@@ -333,7 +403,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Linq.IQueryable\u00601[[Examination_System.Models.Student, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",
@@ -353,7 +433,7 @@
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",
-    "Method": "GetbyId",
+    "Method": "GetById",
     "RelativePath": "api/Student/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -365,7 +445,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.Models.Student",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",

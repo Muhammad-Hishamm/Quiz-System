@@ -1,8 +1,9 @@
 ﻿using Examination_System.Data;
+using Examination_System.Models;
+using Examination_System.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Examination_System.Models;
 
 
 namespace Examination_System.Controllers.Students
@@ -11,81 +12,70 @@ namespace Examination_System.Controllers.Students
     [ApiController]
     public class StudentController : ControllerBase
     {
-        Context context = new Context();
-        // GET: api/Student
+        GeneralRepository<Student> _studentRepository;
+        public StudentController()
+        {
+            _studentRepository = new GeneralRepository<Student>();
+        }
+        // GET: api/student
         [HttpGet]
-        public IActionResult Get()
+        public IQueryable<Student> Get()
         {
-            var students = context.Students.ToList();
-            if (students == null || students.Count == 0)
+            var students = _studentRepository.GetAll();
+            if (students == null)
             {
-                return NotFound("No students found.");
+                return null;
             }
-            return Ok(students);
+            return students;
         }
 
-        // GET: api/Students/5
+        // GET: api/student/1
         [HttpGet("{id}")]
-        public IActionResult GetbyId(int id)
+        public async Task<Student> GetById(int id)
         {
-            var student = context.Students.Find(id);
-            if(student == null)
+            var student = await _studentRepository.GetByIDAsync(id);
+            if (student == null)
             {
-                return NotFound($"Student with ID {id} not found.");
+                return null;
             }
-            return Ok($"GetById method in Student Controller is working for ID: {id}");
+            return student;
         }
 
-        // POST: api/Student
         [HttpPost]
-        public IActionResult Create(Models.Student student)
+        public async Task<IActionResult> Create(Student student)
         {
-            if(student == null)
+            if (student == null)
             {
                 return BadRequest("student data is null.");
             }
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            context.Students.Add(student);
-            context.SaveChanges();
+            await _studentRepository.CreateAsync(student);
             return Ok("Create method in student Controller is working!");
         }
 
-        // PUT: api/Student/5
+
         [HttpPut("{id}")]
-        public IActionResult Update(int id,Models.Student updatedStudent)
+        public async Task<IActionResult> Update(int id, Student updatedStudent)
         {
-            var student = context.Students.Find(id);
-
-            if(student == null)
+            if (updatedStudent == null)
+                return BadRequest("this student is null");
+            if (!ModelState.IsValid)
             {
-                return NotFound($"student with ID {id} not found.");
+                return BadRequest("this student doesn't follow the student Constraints");
             }
-            student.Email = updatedStudent.Email;
-            student.Name = updatedStudent.Name;
-
-            context.Students.Update(student);
-            context.SaveChanges();
-
-            return Ok($"Update method in Student Controller is working for ID: {id}");
+            await _studentRepository.UpdateAsync(updatedStudent);
+            return Ok($"the student with id {id} is updated successully");
         }
 
-        // Delete:api/Student/5
+
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var student = context.Students.Find(id);
-            if(student == null)
-            {
-                return NotFound($"Student with ID {id} not found.");
-            }
-            context.Students.Remove(student);
-            context.SaveChanges();
-            return Ok($"Delete method in Student Controller is working for ID: {id}");
+            await _studentRepository.DeleteAsync(id);
+            return Ok($"the student with id {id} is deleted successully");
         }
-
-
     }
 }

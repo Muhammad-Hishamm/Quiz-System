@@ -1,8 +1,7 @@
 ﻿namespace Examination_System.Models
 {
-    public class Choice
+    public class Choice:BaseModel
     {
-        public int Id { get; set; }
         public string ChoiceBody { get; set; }
         public bool IsCorrect { get; set; }
 

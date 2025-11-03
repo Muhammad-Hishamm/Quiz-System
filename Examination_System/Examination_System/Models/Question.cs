@@ -2,9 +2,8 @@
 
 namespace Examination_System.Models
 {
-    public class Question
+    public class Question : BaseModel
     {
-        public int Id { get; set; }
         public QuestionLevel Level { get; set; }
         public string QuestionBody { get; set; }
 

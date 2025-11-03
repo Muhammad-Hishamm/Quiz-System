@@ -2,9 +2,8 @@
 using Examination_System.Models;
 
 
-public class Exam
+public class Exam : BaseModel
 {
-    public int Id { get; set; }
     public string Title { get; set; }
     public ExamType Type { get; set; }
     public int NumberOfQuestions { get; set; }

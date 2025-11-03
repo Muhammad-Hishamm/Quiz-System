@@ -1,8 +1,9 @@
 ﻿using Examination_System.Data;
+using Examination_System.Models;
+using Examination_System.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Examination_System.Models;
 
 
 namespace Examination_System.Controllers.Instructors
@@ -11,82 +12,70 @@ namespace Examination_System.Controllers.Instructors
     [ApiController]
     public class InstructorController : ControllerBase
     {
-        Context context = new Context();
+        GeneralRepository<Instructor> _instructorRepository;
+        public InstructorController()
+        {
+            _instructorRepository = new GeneralRepository<Instructor>();
+        }
         // GET: api/Instructor
         [HttpGet]
-        public IActionResult Get()
+        public IQueryable<Instructor> Get()
         {
-            var instructors = context.Instructors.ToList();
-            if (instructors == null || instructors.Count == 0)
+            var instructors = _instructorRepository.GetAll();
+            if (instructors == null)
             {
-                return NotFound("No instructors found.");
+                return null;
             }
-            return Ok(instructors);
+            return instructors;
         }
 
-        // GET: api/Instructor/5
+        // GET: api/Instructor/1
         [HttpGet("{id}")]
-        public IActionResult GetbyId(int id)
+        public async Task<Instructor> GetById(int id)
         {
-            var instructor = context.Instructors.Find(id);
-            if(instructor == null)
+            var instructor = await _instructorRepository.GetByIDAsync(id);
+            if (instructor == null)
             {
-                return NotFound($"Instructor with ID {id} not found.");
+                return null;
             }
-            return Ok($"GetById method in Instructor Controller is working for ID: {id}");
+            return instructor;
         }
 
-        // POST: api/Instructor
         [HttpPost]
-        public IActionResult Create(Models.Instructor instructor)
+        public async Task<IActionResult> Create(Instructor instrucor)
         {
-            if(instructor == null)
+            if (instrucor == null)
             {
-                return BadRequest("Instructor data is null.");
+                return BadRequest("instructor data is null.");
             }
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            context.Instructors.Add(instructor);
-            context.SaveChanges();
+            await _instructorRepository.CreateAsync(instrucor);
             return Ok("Create method in Instructor Controller is working!");
         }
 
-        // PUT: api/Instructor/5
+
         [HttpPut("{id}")]
-        public IActionResult Update(int id,Models.Instructor updatedInstructor)
+        public async Task<IActionResult> Update(int id, Instructor updatedInstructor)
         {
-            var instructor = context.Instructors.Find(id);
-
-            if(instructor == null)
+            if (updatedInstructor == null)
+                return BadRequest("this instructor is null");
+            if (!ModelState.IsValid)
             {
-                return NotFound($"Instructor with ID {id} not found.");
+                return BadRequest("this instructor doesn't follow the instructor Constraints");
             }
-            instructor.Name = updatedInstructor.Name;
-            instructor.Email = updatedInstructor.Email;
-            instructor.Department = updatedInstructor.Department;
-
-            context.Instructors.Update(instructor);
-            context.SaveChanges();
-
-            return Ok($"Update method in Instructor Controller is working for ID: {id}");
+            await _instructorRepository.UpdateAsync(updatedInstructor);
+            return Ok($"the Instructor with id {id} is updated successully");
         }
 
-        // Delete:api/Instructor/5
+
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var instructor = context.Instructors.Find(id);
-            if(instructor == null)
-            {
-                return NotFound($"Instructor with ID {id} not found.");
-            }
-            context.Instructors.Remove(instructor);
-            context.SaveChanges();
-            return Ok($"Delete method in Instructor Controller is working for ID: {id}");
+            await _instructorRepository.DeleteAsync(id);
+            return Ok($"the instructor with id {id} is deleted successully");
         }
-
-
     }
 }
