@@ -7,6 +7,6 @@
 
         // Foreign key to Instructors
         public int QuestionId { get; set; }
-        public Question Question { get; set; }
+        public Question? Question { get; set; }
     }
 }

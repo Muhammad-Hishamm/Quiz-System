@@ -9,7 +9,7 @@ namespace Examination_System.Models
         public int CreditHours { get; set; }
 
         public int? InstructorId { get; set; }
-        public Instructor Instructor { get; set; }
+        public Instructor? Instructor { get; set; }
         public ICollection<Exam> Exams { get; set; }
         public ICollection<StudentCourse> StudentCourses { get; set; }
     }

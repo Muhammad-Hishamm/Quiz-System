@@ -5,7 +5,7 @@
         public int Rating { get; set; }
         public string Comments { get; set; }
         public int ResultId { get; set; }
-        public Result Result { get; set; }
+        public Result? Result { get; set; }
 
 
     }
