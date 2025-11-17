@@ -8,7 +8,7 @@ namespace Examination_System.Models
         public string QuestionBody { get; set; }
 
         public int InstructorId { get; set; }
-        public Instructor Instructor { get; set; }
+        public Instructor? Instructor { get; set; }
         public ICollection<Choice> Choices { get; set; }
         public ICollection<ExamQuestion> ExamQuestions { get; set; }
 

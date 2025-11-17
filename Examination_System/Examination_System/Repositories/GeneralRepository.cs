@@ -46,7 +46,7 @@ namespace Examination_System.Repositories
         // this endpoint to soft delete the entity with id 
         public async Task DeleteAsync(int id)
         {
-            var entity = await _entities.FirstOrDefaultAsync(_e => _e.Id == id);
+            var entity = await _entities.AsTracking().FirstOrDefaultAsync(_e => _e.Id == id);
             entity.IsDeleted = true;
             await _context.SaveChangesAsync();
         }

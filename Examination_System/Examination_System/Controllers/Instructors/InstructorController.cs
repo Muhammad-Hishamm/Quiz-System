@@ -1,6 +1,7 @@
 ﻿using Examination_System.Data;
 using Examination_System.Models;
 using Examination_System.Repositories;
+using Examination_System.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -12,16 +13,18 @@ namespace Examination_System.Controllers.Instructors
     [ApiController]
     public class InstructorController : ControllerBase
     {
-        GeneralRepository<Instructor> _instructorRepository;
+        InstructorService _instructorService;
         public InstructorController()
         {
-            _instructorRepository = new GeneralRepository<Instructor>();
+            _instructorService = new InstructorService();
         }
+
+
         // GET: api/Instructor
         [HttpGet]
         public IQueryable<Instructor> Get()
         {
-            var instructors = _instructorRepository.GetAll();
+            var instructors = _instructorService.GetAll();
             if (instructors == null)
             {
                 return null;
@@ -29,11 +32,13 @@ namespace Examination_System.Controllers.Instructors
             return instructors;
         }
 
+
+
         // GET: api/Instructor/1
         [HttpGet("{id}")]
         public async Task<Instructor> GetById(int id)
         {
-            var instructor = await _instructorRepository.GetByIDAsync(id);
+            var instructor = await _instructorService.GetById(id);
             if (instructor == null)
             {
                 return null;
@@ -43,39 +48,29 @@ namespace Examination_System.Controllers.Instructors
 
         [HttpPost]
         public async Task<IActionResult> Create(Instructor instrucor)
-        {
-            if (instrucor == null)
-            {
-                return BadRequest("instructor data is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _instructorRepository.CreateAsync(instrucor);
-            return Ok("Create method in Instructor Controller is working!");
+        {            
+            if(await _instructorService.Create(instrucor))
+                 return Ok("Create method in Instructor Controller is working!");
+            return BadRequest(ModelState);
         }
 
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Instructor updatedInstructor)
         {
-            if (updatedInstructor == null)
-                return BadRequest("this instructor is null");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("this instructor doesn't follow the instructor Constraints");
-            }
-            await _instructorRepository.UpdateAsync(updatedInstructor);
-            return Ok($"the Instructor with id {id} is updated successully");
+
+            if(await _instructorService.Update(id,updatedInstructor))
+                return Ok($"the Instructor with id {id} is updated successully");
+            return BadRequest("this instructor doesn't follow the instructor Constraints");
         }
 
-
+            
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _instructorRepository.DeleteAsync(id);
-            return Ok($"the instructor with id {id} is deleted successully");
+            if(await _instructorService.Delete(id))
+                return Ok($"the instructor with id {id} is deleted successully");
+            return BadRequest("this instructor doesn't exist");
         }
     }
 }

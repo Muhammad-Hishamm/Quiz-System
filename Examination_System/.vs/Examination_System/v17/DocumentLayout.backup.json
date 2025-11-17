@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\exam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\examquestion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\examquestion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\result.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\studentexam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\studentexam.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\studentcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\studentcourse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\choice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\choice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +51,8 @@
       "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\data\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251103215139_addingBaseModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Examination_System\\Migrations\\20251103215139_addingBaseModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251103212756_addingBaseModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Examination_System\\Migrations\\20251103212756_addingBaseModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\models\\examquestion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\models\\examquestion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\controllers\\courses\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,6 +85,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|c:\\users\\muham\\onedrive\\desktop\\quiz-system\\examination_system\\examination_system\\migrations\\20251103215139_addingbasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1FAB77-6A19-4E32-8D4D-599E7E80EA45}|Examination_System\\Examination_System.csproj|solutionrelative:examination_system\\migrations\\20251103215139_addingbasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,11 +98,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20251111224005_nullableMembersForTesting.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs",
+              "RelativeToolTip": "Examination_System\\Migrations\\20251111224005_nullableMembersForTesting.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:40:05.927Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StudentExam.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\StudentExam.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\StudentExam.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\StudentExam.cs",
+              "RelativeToolTip": "Examination_System\\Models\\StudentExam.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAYwA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:37:59.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StudentCourse.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\StudentCourse.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\StudentCourse.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\StudentCourse.cs",
+              "RelativeToolTip": "Examination_System\\Models\\StudentCourse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:37:40.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Result.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Result.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Result.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Result.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Result.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:37:21.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Question.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Question.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Question.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Question.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Question.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:37:05.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Feedback.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Feedback.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Feedback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:36:51.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Exam.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Exam.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Exam.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Exam.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Exam.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:36:23.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Choice.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Choice.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Choice.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Choice.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Choice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:35:49.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ExamQuestion.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\ExamQuestion.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\ExamQuestion.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\ExamQuestion.cs",
+              "RelativeToolTip": "Examination_System\\Models\\ExamQuestion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T21:30:03.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Course.cs",
+              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "Examination_System\\Models\\Course.cs",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\Course.cs",
+              "RelativeToolTip": "Examination_System\\Models\\Course.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAiwAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T22:15:58.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "20251103215139_addingBaseModel.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251103215139_addingBaseModel.cs",
               "RelativeDocumentMoniker": "Examination_System\\Migrations\\20251103215139_addingBaseModel.cs",
@@ -74,25 +240,11 @@
               "RelativeToolTip": "Examination_System\\Migrations\\20251103215139_addingBaseModel.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:51:39.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:51:39.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ExamQuestion.cs",
-              "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\ExamQuestion.cs",
-              "RelativeDocumentMoniker": "Examination_System\\Models\\ExamQuestion.cs",
-              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Models\\ExamQuestion.cs",
-              "RelativeToolTip": "Examination_System\\Models\\ExamQuestion.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:30:03.07Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "20251103212756_addingBaseModel.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Migrations\\20251103212756_addingBaseModel.cs",
               "RelativeDocumentMoniker": "Examination_System\\Migrations\\20251103212756_addingBaseModel.cs",
@@ -100,12 +252,11 @@
               "RelativeToolTip": "Examination_System\\Migrations\\20251103212756_addingBaseModel.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:27:56.953Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:27:56.953Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "StudentController.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Controllers\\Students\\StudentController.cs",
               "RelativeDocumentMoniker": "Examination_System\\Controllers\\Students\\StudentController.cs",
@@ -113,12 +264,11 @@
               "RelativeToolTip": "Examination_System\\Controllers\\Students\\StudentController.cs",
               "ViewState": "AgIAAC4AAAAAAAAAAAApwDwAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:21:28.975Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:21:28.975Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "Context.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Data\\Context.cs",
               "RelativeDocumentMoniker": "Examination_System\\Data\\Context.cs",
@@ -126,25 +276,24 @@
               "RelativeToolTip": "Examination_System\\Data\\Context.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T18:18:25.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T18:18:25.071Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Program.cs",
               "RelativeDocumentMoniker": "Examination_System\\Program.cs",
-              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Program.cs*",
-              "RelativeToolTip": "Examination_System\\Program.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Program.cs",
+              "RelativeToolTip": "Examination_System\\Program.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBgAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T18:18:19.736Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "QuestionController.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Controllers\\Questions\\QuestionController.cs",
               "RelativeDocumentMoniker": "Examination_System\\Controllers\\Questions\\QuestionController.cs",
@@ -152,12 +301,11 @@
               "RelativeToolTip": "Examination_System\\Controllers\\Questions\\QuestionController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:15:20.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:15:20.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "InstructorController.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Controllers\\Instructors\\InstructorController.cs",
               "RelativeDocumentMoniker": "Examination_System\\Controllers\\Instructors\\InstructorController.cs",
@@ -165,12 +313,11 @@
               "RelativeToolTip": "Examination_System\\Controllers\\Instructors\\InstructorController.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAAB8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:08:11.383Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:08:11.383Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Controllers\\Courses\\CourseController.cs",
               "RelativeDocumentMoniker": "Examination_System\\Controllers\\Courses\\CourseController.cs",
@@ -178,12 +325,11 @@
               "RelativeToolTip": "Examination_System\\Controllers\\Courses\\CourseController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAQwBkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T20:27:24.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T20:27:24.863Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "ExamController.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Controllers\\Exams\\ExamController.cs",
               "RelativeDocumentMoniker": "Examination_System\\Controllers\\Exams\\ExamController.cs",
@@ -191,12 +337,11 @@
               "RelativeToolTip": "Examination_System\\Controllers\\Exams\\ExamController.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAAAEwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T21:01:59.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T21:01:59.386Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 19,
               "Title": "CourseRepository.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Repositories\\CourseRepository.cs",
               "RelativeDocumentMoniker": "Examination_System\\Repositories\\CourseRepository.cs",
@@ -204,12 +349,11 @@
               "RelativeToolTip": "Examination_System\\Repositories\\CourseRepository.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAlwCgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T20:19:38.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T20:19:38.438Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 18,
               "Title": "GeneralRepository.cs",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\Repositories\\GeneralRepository.cs",
               "RelativeDocumentMoniker": "Examination_System\\Repositories\\GeneralRepository.cs",
@@ -217,12 +361,11 @@
               "RelativeToolTip": "Examination_System\\Repositories\\GeneralRepository.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAASwC4AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T20:11:11.648Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T20:11:11.648Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\muham\\OneDrive\\Desktop\\Quiz-System\\Examination_System\\Examination_System\\appsettings.json",
               "RelativeDocumentMoniker": "Examination_System\\appsettings.json",
@@ -230,8 +373,7 @@
               "RelativeToolTip": "Examination_System\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-03T18:18:22.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-03T18:18:22.898Z"
             }
           ]
         }

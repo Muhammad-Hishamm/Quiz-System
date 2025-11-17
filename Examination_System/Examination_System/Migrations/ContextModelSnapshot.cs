@@ -247,10 +247,10 @@ namespace Examination_System.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("float");
 
-                    b.Property<int>("StudentExamExamId")
+                    b.Property<int?>("StudentExamExamId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentExamStudentId")
+                    b.Property<int?>("StudentExamStudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -402,9 +402,7 @@ namespace Examination_System.Migrations
                 {
                     b.HasOne("Examination_System.Models.StudentExam", "StudentExam")
                         .WithMany()
-                        .HasForeignKey("StudentExamStudentId", "StudentExamExamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentExamStudentId", "StudentExamExamId");
 
                     b.Navigation("StudentExam");
                 });
