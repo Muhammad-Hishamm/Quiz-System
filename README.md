@@ -1,6 +1,6 @@
 # 📚 Quiz Management System
 
-A full-stack online examination platform built using **ASP.NET Core Web API** and **EF Core**.
+An examination platform built using **ASP.NET Core Web API** and **EF Core**.
 The system enables instructors to create and manage quizzes for their courses, and allows students to participate in exams and receive automated results.
 
 ---
