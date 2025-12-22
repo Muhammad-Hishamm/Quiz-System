@@ -1,3 +1,5 @@
+using Examination_System.DTOs.Questions;
+using Examination_System.DTOs.Questions;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Linq;
@@ -7,50 +9,71 @@ namespace Examination_System.Services
 {
     public class QuestionService
     {
-        private readonly GeneralRepository<Question> _questionRepository;
+        private readonly GeneralRepository<Question> _generalRepository;
 
         public QuestionService()
         {
-            _questionRepository = new GeneralRepository<Question>();
+            _generalRepository = new GeneralRepository<Question>();
         }
 
-        public IQueryable<Question> GetAll()
+        public IQueryable<GetAllQuestionsDTOs>? GetAll()
         {
-            return _questionRepository.GetAll();
+            return _generalRepository.GetAll<GetAllQuestionsDTOs>(q => new GetAllQuestionsDTOs
+            {
+                Id = q.Id,
+                Level = q.Level,
+                QuestionBody = q.QuestionBody,
+                InstructorId = q.InstructorId
+            });
         }
 
-        public async Task<Question> GetById(int id)
+        public Task<GetAllQuestionsDTOs?> GetByIdAsync(int id)
         {
-            return await _questionRepository.GetByIDAsync(id);
+            return _generalRepository.GetByIdAsync<GetAllQuestionsDTOs>(id, q => new GetAllQuestionsDTOs
+            {
+                Id = q.Id,
+                Level = q.Level,
+                QuestionBody = q.QuestionBody,
+                InstructorId = q.InstructorId
+            });
         }
 
-        public async Task<bool> Create(Question question)
+        public async Task<bool> Create(CreateQuestionDTO dto)
         {
-            if (question == null) return false;
-            await _questionRepository.CreateAsync(question);
+            if (dto is null) return false;
+
+            var question = new Question
+            {
+                Level = dto.Level,
+                QuestionBody = dto.QuestionBody,
+                InstructorId = dto.InstructorId
+            };
+
+            await _generalRepository.CreateAsync(question).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Update(int id, Question updatedQuestion)
+        public async Task<bool> Update(int id, UpdateQuestionDto updated)
         {
-            if (updatedQuestion == null) return false;
+            if (updated == null) return false;
 
-            var existing = await _questionRepository.GetByIDAsync(id);
+            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
 
-            existing.Level = updatedQuestion.Level;
-            existing.QuestionBody = updatedQuestion.QuestionBody;
-            existing.InstructorId = updatedQuestion.InstructorId;
+            existing.Level = updated.Level;
+            existing.QuestionBody = updated.QuestionBody;
+            existing.InstructorId = updated.InstructorId;
 
-            await _questionRepository.UpdateAsync(existing);
+            await _generalRepository.UpdateAsync(existing).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)      
         {
-            var existing = await GetById(id);
+            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
-            await _questionRepository.DeleteAsync(id);
+
+            await _generalRepository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }
     }

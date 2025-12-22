@@ -1,9 +1,9 @@
-﻿using Examination_System.Data;
-using Examination_System.Models;
-using Examination_System.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using Examination_System.DTOs.Students;
+using Examination_System.Services;
+using Examination_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 
 namespace Examination_System.Controllers.Students
@@ -12,70 +12,63 @@ namespace Examination_System.Controllers.Students
     [ApiController]
     public class StudentController : ControllerBase
     {
-        GeneralRepository<Student> _studentRepository;
+        private readonly StudentService _studentService;
+
         public StudentController()
         {
-            _studentRepository = new GeneralRepository<Student>();
-        }
-        // GET: api/student
-        [HttpGet]
-        public IQueryable<Student> Get()
-        {
-            var students = _studentRepository.GetAll();
-            if (students == null)
-            {
-                return null;
-            }
-            return students;
+            _studentService = new StudentService();
         }
 
-        // GET: api/student/1
-        [HttpGet("{id}")]
-        public async Task<Student> GetById(int id)
+        // GET: api/Student
+        [HttpGet]
+        public ActionResult<IQueryable<GetStudentViewModel>> Get()
         {
-            var student = await _studentRepository.GetByIDAsync(id);
-            if (student == null)
-            {
-                return null;
-            }
-            return student;
+            var vm = new GetStudentViewModel();
+            var dtos = _studentService.GetAll();
+            var students = dtos.Select(dto => vm.ToViewModel(dto));
+            return Ok(students);
+        }
+
+        // GET: api/Student/1
+        [HttpGet("{id}")]
+        public async Task<ActionResult<GetStudentViewModel>> GetById(int id)
+        {
+            var vm = new GetStudentViewModel();
+            var dto = await _studentService.GetByIdAsync(id).ConfigureAwait(false);
+            if (dto == null) return NotFound();
+            return Ok(vm.ToViewModel(dto));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Student student)
+        public async Task<IActionResult> Create(CreateStudentViewModel student)
         {
-            if (student == null)
-            {
-                return BadRequest("student data is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _studentRepository.CreateAsync(student);
-            return Ok("Create method in student Controller is working!");
-        }
+            if (student == null) return BadRequest("Student data is null.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            var createDto = new CreateStudentDTO().ToDTO(student);
+            var ok = await _studentService.Create(createDto).ConfigureAwait(false);
+            if (!ok) return BadRequest();
+            return Ok();
+        }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Student updatedStudent)
+        public async Task<IActionResult> Update(int id, UpdateStudentViewModel updatedStudent)
         {
-            if (updatedStudent == null)
-                return BadRequest("this student is null");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("this student doesn't follow the student Constraints");
-            }
-            await _studentRepository.UpdateAsync(updatedStudent);
-            return Ok($"the student with id {id} is updated successully");
-        }
+            if (updatedStudent == null) return BadRequest("this student is null");
+            if (!ModelState.IsValid) return BadRequest("this student doesn't follow the constraints");
 
+            var updatedDto = new UpdateStudentDto().ToDTO(updatedStudent);
+            var ok = await _studentService.Update(id, updatedDto).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _studentRepository.DeleteAsync(id);
-            return Ok($"the student with id {id} is deleted successully");
+            var ok = await _studentService.Delete(id).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
         }
     }
 }

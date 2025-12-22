@@ -1,3 +1,4 @@
+using Examination_System.DTOs.Results;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Linq;
@@ -7,49 +8,70 @@ namespace Examination_System.Services
 {
     public class ResultService
     {
-        private readonly GeneralRepository<Result> _resultRepository;
+        private readonly GeneralRepository<Result> _generalRepository;
 
         public ResultService()
         {
-            _resultRepository = new GeneralRepository<Result>();
+            _generalRepository = new GeneralRepository<Result>();
         }
 
-        public IQueryable<Result> GetAll()
+        public IQueryable<GetAllResultsDTOs>? GetAll()
         {
-            return _resultRepository.GetAll();
+            return _generalRepository.GetAll<GetAllResultsDTOs>(r => new GetAllResultsDTOs
+            {
+                Id = r.Id,
+                Score = r.Score,
+                StudentId = r.StudentExam == null ? (int?)null : r.StudentExam.StudentId,
+                ExamId = r.StudentExam == null ? (int?)null : r.StudentExam.ExamId
+            });
         }
 
-        public async Task<Result> GetById(int id)
+        public Task<GetAllResultsDTOs?> GetByIdAsync(int id)
         {
-            return await _resultRepository.GetByIDAsync(id);
+            return _generalRepository.GetByIdAsync<GetAllResultsDTOs>(id, r => new GetAllResultsDTOs
+            {
+                Id = r.Id,
+                Score = r.Score,
+                StudentId = r.StudentExam == null ? (int?)null : r.StudentExam.StudentId,
+                ExamId = r.StudentExam == null ? (int?)null : r.StudentExam.ExamId
+            });
         }
 
-        public async Task<bool> Create(Result result)
+        public async Task<bool> Create(CreateResultDTO dto)
         {
-            if (result == null) return false;
-            await _resultRepository.CreateAsync(result);
+            if (dto is null) return false;
+
+            var result = new Result
+            {
+                Score = dto.Score
+                // If you need to create/associate a StudentExam entity,
+                // handle that in the service here (not shown).
+            };
+
+            await _generalRepository.CreateAsync(result).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Update(int id, Result updatedResult)
+        public async Task<bool> Update(int id, UpdateResultDto updated)
         {
-            if (updatedResult == null) return false;
+            if (updated == null) return false;
 
-            var existing = await _resultRepository.GetByIDAsync(id);
+            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
 
-            existing.Score = updatedResult.Score;
-            // keep relational keys/navigation unchanged unless needed
+            existing.Score = updated.Score;
+            // If you need to update StudentExam association, handle it explicitly here.
 
-            await _resultRepository.UpdateAsync(existing);
+            await _generalRepository.UpdateAsync(existing).ConfigureAwait(false);
             return true;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await GetById(id);
+            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
-            await _resultRepository.DeleteAsync(id);
+
+            await _generalRepository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }
     }

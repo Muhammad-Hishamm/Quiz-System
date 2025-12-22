@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
-    "\\Controllers\\Instructors",
-    "\\Controllers\\Questions",
-    "\\Services"
+    "\\Controllers\\Choices",
+    "\\DTOs\\Courses"
   ],
+  "SelectedNode": "\\Controllers\\Choices\\ChoiceController.cs",
   "PreviewInSolutionExplorer": false
 }

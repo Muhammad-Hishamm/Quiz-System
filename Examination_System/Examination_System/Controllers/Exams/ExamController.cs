@@ -1,8 +1,13 @@
 ﻿using Examination_System.Data;
+using Examination_System.DTOs.Exams;
 using Examination_System.Models;
 using Examination_System.Repositories;
+using Examination_System.Services;
+using Examination_System.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Examination_System.Controllers.Exams
 {
@@ -10,72 +15,65 @@ namespace Examination_System.Controllers.Exams
     [ApiController]
     public class ExamController : ControllerBase
     {
-        GeneralRepository<Exam> _examRepository;
+        private readonly ExamService _examService;
+
         public ExamController()
         {
-            _examRepository = new GeneralRepository<Exam>();
+            _examService = new ExamService();
         }
+
         // GET: api/Exam
         [HttpGet]
-        public IQueryable<Exam> Get()
+        public ActionResult<IQueryable<GetExamViewModel>> Get()
         {
-            var courses = _examRepository.GetAll();
-            if (courses == null)
-            {
-                return null;
-            }
-            return courses;
+            var viewModel = new GetExamViewModel();
+            var dtos = _examService.GetAll();
+            var exams = dtos.Select(dto => viewModel.ToViewModel(dto));
+            return Ok(exams);
         }
 
         // GET: api/Exam/1
         [HttpGet("{id}")]
-        public async Task<Exam> GetById(int id)
+        public async Task<ActionResult<GetExamViewModel>> GetById(int id)
         {
-            var exam = await _examRepository.GetByIDAsync(id);
-            if (exam == null)
-            {
-                return null;
-            }
-            return exam;
+            var viewModel = new GetExamViewModel();
+            var examDto = await _examService.GetByIdAsync(id).ConfigureAwait(false);
+            if (examDto == null) return NotFound();
+            var examViewModel = viewModel.ToViewModel(examDto);
+            return Ok(examViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Exam exam)
+        public async Task<IActionResult> Create(CreateExamViewModel exam)
         {
-            if (exam == null)
-            {
-                return BadRequest("Exam data is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _examRepository.CreateAsync(exam);
-            return Ok("Create method in Exam Controller is working!");
-        }
+            if (exam == null) return BadRequest("Exam data is null.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            var createDto = new CreateExamDTO().ToDTO(exam);
+            var ok = await _examService.Create(createDto).ConfigureAwait(false);
+            if (!ok) return BadRequest();
+
+            return Ok();
+        }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Exam updatedExam)
+        public async Task<IActionResult> Update(int id, UpdateExamViewModel updatedExam)
         {
-            if (updatedExam == null)
-                return BadRequest("this exam is null");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("this exam doesn't follow the exam Constraints");
-            }
-            await _examRepository.UpdateAsync(updatedExam);
-            return Ok($"the Exam with id {id} is updated successully");
-        }
+            if (updatedExam == null) return BadRequest("this exam is null");
+            if (!ModelState.IsValid) return BadRequest("this exam doesn't follow the Exam Constraints");
 
+            var updatedExamDto = new UpdateExamDto().ToDTO(updatedExam);
+            var ok = await _examService.Update(id, updatedExamDto).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _examRepository.DeleteAsync(id);
-            return Ok($"the couruse with id {id} is deleted successully");
+            var ok = await _examService.Delete(id).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
         }
-
     }
-
 }

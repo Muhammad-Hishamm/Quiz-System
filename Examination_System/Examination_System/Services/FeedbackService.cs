@@ -1,3 +1,4 @@
+using Examination_System.DTOs.Feedbacks;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Linq;
@@ -7,50 +8,70 @@ namespace Examination_System.Services
 {
     public class FeedbackService
     {
-        private readonly GeneralRepository<Feedback> _feedbackRepository;
+        private readonly GeneralRepository<Feedback> _repository;
 
         public FeedbackService()
         {
-            _feedbackRepository = new GeneralRepository<Feedback>();
+            _repository = new GeneralRepository<Feedback>();
         }
 
-        public IQueryable<Feedback> GetAll()
+        public IQueryable<GetAllFeedbacksDTOs>? GetAll()
         {
-            return _feedbackRepository.GetAll();
+            return _repository.GetAll<GetAllFeedbacksDTOs>(f => new GetAllFeedbacksDTOs
+            {
+                Id = f.Id,
+                Rating = f.Rating,
+                Comments = f.Comments,
+                ResultId = f.ResultId
+            });
         }
 
-        public async Task<Feedback> GetById(int id)
+        public Task<GetAllFeedbacksDTOs?> GetByIdAsync(int id)
         {
-            return await _feedbackRepository.GetByIDAsync(id);
+            return _repository.GetByIdAsync<GetAllFeedbacksDTOs>(id, f => new GetAllFeedbacksDTOs
+            {
+                Id = f.Id,
+                Rating = f.Rating,
+                Comments = f.Comments,
+                ResultId = f.ResultId
+            });
         }
-
-        public async Task<bool> Create(Feedback feedback)
+        public async Task<bool> Create(CreateFeedbackDTO dto)
         {
-            if (feedback == null) return false;
-            await _feedbackRepository.CreateAsync(feedback);
+            if (dto is null) return false;
+
+            var entity = new Feedback
+            {
+                Rating = dto.Rating,
+                Comments = dto.Comments,
+                ResultId = dto.ResultId
+            };
+
+            await _repository.CreateAsync(entity).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Update(int id, Feedback updatedFeedback)
+        public async Task<bool> Update(int id, UpdateFeedbackDto dto)
         {
-            if (updatedFeedback == null) return false;
+            if (dto is null) return false;
 
-            var existing = await _feedbackRepository.GetByIDAsync(id);
-            if (existing == null) return false;
+            // Retrieve the tracked entity (entity-returning overload)
+            var entityToUpdate = await _repository.GetByIdAsync(id).ConfigureAwait(false);
+            if (entityToUpdate == null) return false;
 
-            existing.Rating = updatedFeedback.Rating;
-            existing.Comments = updatedFeedback.Comments;
-            existing.ResultId = updatedFeedback.ResultId;
+            entityToUpdate.Rating = dto.Rating;
+            entityToUpdate.Comments = dto.Comments;
+            entityToUpdate.ResultId = dto.ResultId;
 
-            await _feedbackRepository.UpdateAsync(existing);
+            await _repository.UpdateAsync(entityToUpdate).ConfigureAwait(false);
             return true;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await GetById(id);
+            var existing = await this.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
-            await _feedbackRepository.DeleteAsync(id);
+            await _repository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }
     }

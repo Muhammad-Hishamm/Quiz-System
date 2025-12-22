@@ -1,3 +1,4 @@
+using Examination_System.DTOs.Choices;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Linq;
@@ -14,43 +15,64 @@ namespace Examination_System.Services
             _choiceRepository = new GeneralRepository<Choice>();
         }
 
-        public IQueryable<Choice> GetAll()
+        public IQueryable<GetAllChoicesDTOs>? GetAll()
         {
-            return _choiceRepository.GetAll();
+            return _choiceRepository.GetAll<GetAllChoicesDTOs>(c => new GetAllChoicesDTOs
+            {
+                Id = c.Id,
+                ChoiceBody = c.ChoiceBody,
+                IsCorrect = c.IsCorrect,
+                QuestionId = c.QuestionId
+            });
         }
 
-        public async Task<Choice> GetById(int id)
+        public Task<GetAllChoicesDTOs?> GetByIdAsync(int id)
         {
-            return await _choiceRepository.GetByIDAsync(id);
+            return _choiceRepository.GetByIdAsync<GetAllChoicesDTOs>(id, c => new GetAllChoicesDTOs
+            {
+                Id = c.Id,
+                ChoiceBody = c.ChoiceBody,
+                IsCorrect = c.IsCorrect,
+                QuestionId = c.QuestionId
+            });
         }
 
-        public async Task<bool> Create(Choice choice)
+        public async Task<bool> Create(CreateChoiceDTO dto)
         {
-            if (choice == null) return false;
-            await _choiceRepository.CreateAsync(choice);
+            if (dto is null) return false;
+
+            var choice = new Choice
+            {
+                ChoiceBody = dto.ChoiceBody,
+                IsCorrect = dto.IsCorrect,
+                QuestionId = dto.QuestionId
+            };
+
+            await _choiceRepository.CreateAsync(choice).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Update(int id, Choice updatedChoice)
+        public async Task<bool> Update(int id, UpdateChoiceDto updatedChoice)
         {
             if (updatedChoice == null) return false;
 
-            var existing = await _choiceRepository.GetByIDAsync(id);
+            var existing = await _choiceRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
 
             existing.ChoiceBody = updatedChoice.ChoiceBody;
             existing.IsCorrect = updatedChoice.IsCorrect;
             existing.QuestionId = updatedChoice.QuestionId;
 
-            await _choiceRepository.UpdateAsync(existing);
+            await _choiceRepository.UpdateAsync(existing).ConfigureAwait(false);
             return true;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await GetById(id);
+            var existing = await _choiceRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (existing == null) return false;
-            await _choiceRepository.DeleteAsync(id);
+
+            await _choiceRepository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }
     }

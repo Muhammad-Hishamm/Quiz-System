@@ -1,9 +1,10 @@
-﻿using Examination_System.Data;
+﻿using Examination_System.DTOs.Courses;
 using Examination_System.Models;
-using Examination_System.Repositories;
-using Microsoft.AspNetCore.Http;
+using Examination_System.Services;
+using Examination_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Examination_System.Controllers.Courses
 {
@@ -11,70 +12,65 @@ namespace Examination_System.Controllers.Courses
     [ApiController]
     public class CourseController : ControllerBase
     {
-        CourseRepository _courseRepository;
+        private readonly CourseService _courseService;
+
         public CourseController()
         {
-            _courseRepository = new CourseRepository();
+            _courseService = new CourseService();
         }
+
         // GET: api/Course
         [HttpGet]
-        public IQueryable<Course> Get()
+        public ActionResult<IEnumerable<GetCoursesViewModel>> Get()
         {
-            var courses =  _courseRepository.GetAll();
-            if (courses == null)
-            {
-                return null;
-            }
-            return courses;
+            var viewModel = new GetCoursesViewModel();
+            var dtos = _courseService.GetAll();
+            var courses = dtos.Select(dto => viewModel.ToViewModel(dto));
+            return Ok(courses);
         }
 
         // GET: api/Course/1
         [HttpGet("{id}")]
-        public async Task<Course> GetById(int id)
+        public async Task<ActionResult<GetCoursesViewModel>> GetById(int id)
         {
-            var course = await  _courseRepository.GetByIdAsync(id);
-            if (course == null)
-            {
-                return null;
-            }
-            return course;
+            var viewModel = new GetCoursesViewModel();
+            var courseDto = await _courseService.GetByIdAsync(id).ConfigureAwait(false);
+            if (courseDto == null) return NotFound();
+            var courseViewModel = viewModel.ToViewModel(courseDto);
+            return Ok(courseViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Course course)
+        public async Task<IActionResult> Create(CreateCourseViewModel course)
         {
-            if (course == null)
-            {
-                return BadRequest("Course data is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _courseRepository.Add(course);
-            return Ok("Create method in Course Controller is working!");
-        }
+            if (course == null) return BadRequest("Course data is null.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            var createDto = new CreateDTO().ToDTO(course);
+            var ok = await _courseService.Create(createDto).ConfigureAwait(false);
+            if (!ok) return BadRequest();
+
+            return Ok();
+        }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Course updatedCourse)
+        public async Task<IActionResult> Update(int id, UpdateCourseViewModel updatedCourse)
         {
-            if (updatedCourse == null)
-                return BadRequest("this course is null");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("this course doesn't follow the Course Constraints");
-            }
-            await _courseRepository.Update(updatedCourse);
-            return Ok($"the course with id {id} is updated successully");
-        }
+            if (updatedCourse == null) return BadRequest("this course is null");
+            if (!ModelState.IsValid) return BadRequest("this course doesn't follow the Course Constraints");
 
+            var updatedCourseDto = new UpdateCourseDto().ToDTO(updatedCourse);
+            var ok = await _courseService.Update(id, updatedCourseDto).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _courseRepository.Delete(id);
-            return Ok($"the couruse with id {id} is deleted successully");
+            var ok = await _courseService.Delete(id).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
         }
     }
 }

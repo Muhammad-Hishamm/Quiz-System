@@ -1,74 +1,79 @@
-﻿using Examination_System.Models;
+﻿using Examination_System.DTOs.Instructors;
+using Examination_System.DTOs.Instructors;
+using Examination_System.Models;
 using Examination_System.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examination_System.Services
 {
     public class InstructorService
     {
-        GeneralRepository<Instructor> _instructorRepository;
-        public InstructorService() 
-        { 
+        private readonly GeneralRepository<Instructor> _instructorRepository;
+
+        public InstructorService()
+        {
             _instructorRepository = new GeneralRepository<Instructor>();
         }
-       
-        public IQueryable<Instructor> GetAll()
+
+        public IQueryable<GetAllInstructorsDTOs>? GetAll()
         {
-            var instructors = _instructorRepository.GetAll();
-            if (instructors == null)
+            return _instructorRepository.GetAll<GetAllInstructorsDTOs>(i => new GetAllInstructorsDTOs
             {
-                return null;
-            }
-            return instructors;
+                Id = i.Id,
+                Name = i.Name,
+                Email = i.Email,
+                Department = i.Department
+            });
         }
 
-        public async Task<Instructor> GetById(int id)
+        public Task<GetAllInstructorsDTOs?> GetByIdAsync(int id)
         {
-            var instructor = await _instructorRepository.GetByIDAsync(id);
-            if (instructor == null)
+            return _instructorRepository.GetByIdAsync<GetAllInstructorsDTOs>(id, i => new GetAllInstructorsDTOs
             {
-                return null;
-            }
-            return instructor;
+                Id = i.Id,
+                Name = i.Name,
+                Email = i.Email,
+                Department = i.Department
+            });
         }
 
-        public async Task<bool> Create(Instructor instrucor)
+        public async Task<bool> Create(CreateInstructorDTO instructorDto)
         {
-            if (instrucor == null)
+            if (instructorDto is null) return false;
+
+            var instructor = new Instructor
             {
-                return false;
-            }
-          
-            await _instructorRepository.CreateAsync(instrucor);
+                Name = instructorDto.Name,
+                Email = instructorDto.Email,
+                Department = instructorDto.Department
+            };
+
+            await _instructorRepository.CreateAsync(instructor).ConfigureAwait(false);
             return true;
         }
 
-        public async Task<bool> Update(int id, Instructor updatedInstructor)
+        public async Task<bool> Update(int id, UpdateInstructorDto updatedInstructor)
         {
-            if (updatedInstructor == null)
-                return false;
+            if (updatedInstructor == null) return false;
 
-            // Load existing entity first
-            var existing = await _instructorRepository.GetByIDAsync(id);
-            if (existing == null)
-                return false;
+            var existing = await _instructorRepository.GetByIdAsync(id).ConfigureAwait(false);
+            if (existing == null) return false;
 
-            // Map only the scalar fields you want to allow updating.
             existing.Name = updatedInstructor.Name;
             existing.Email = updatedInstructor.Email;
             existing.Department = updatedInstructor.Department;
 
-            // Avoid replacing navigation collections unless intended.
-            await _instructorRepository.UpdateAsync(existing);
+            await _instructorRepository.UpdateAsync(existing).ConfigureAwait(false);
             return true;
         }
 
         public async Task<bool> Delete(int id)
         {
-            if(await GetById(id) == null)    return false;
-            await _instructorRepository.DeleteAsync(id);
+            var existing = await _instructorRepository.GetByIdAsync(id).ConfigureAwait(false);
+            if (existing == null) return false;
+
+            await _instructorRepository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }
     }
