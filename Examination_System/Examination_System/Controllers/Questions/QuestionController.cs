@@ -1,9 +1,9 @@
-﻿using Examination_System.Data;
-using Examination_System.Models;
-using Examination_System.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using Examination_System.DTOs.Questions;
+using Examination_System.Services;
+using Examination_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Examination_System.Controllers.Questions
 {
@@ -11,70 +11,63 @@ namespace Examination_System.Controllers.Questions
     [ApiController]
     public class QuestionController : ControllerBase
     {
-        GeneralRepository<Question> _questionRepository;
+        private readonly QuestionService _questionService;
+
         public QuestionController()
         {
-            _questionRepository = new GeneralRepository<Question>();
+            _questionService = new QuestionService();
         }
+
         // GET: api/Question
         [HttpGet]
-        public IQueryable<Question> Get()
+        public ActionResult<IQueryable<GetQuestionViewModel>> Get()
         {
-            var questions = _questionRepository.GetAll();
-            if (questions == null)
-            {
-                return null;
-            }
-            return questions;
+            var vm = new GetQuestionViewModel();
+            var dtos = _questionService.GetAll();
+            var questions = dtos.Select(dto => vm.ToViewModel(dto));
+            return Ok(questions);
         }
 
         // GET: api/Question/1
         [HttpGet("{id}")]
-        public async Task<Question> GetById(int id)
+        public async Task<ActionResult<GetQuestionViewModel>> GetById(int id)
         {
-            var question = await _questionRepository.GetByIDAsync(id);
-            if (question == null)
-            {
-                return null;
-            }
-            return question;
+            var vm = new GetQuestionViewModel();
+            var dto = await _questionService.GetByIdAsync(id).ConfigureAwait(false);
+            if (dto == null) return NotFound();
+            return Ok(vm.ToViewModel(dto));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Question question)
+        public async Task<IActionResult> Create(CreateQuestionViewModel question)
         {
-            if (question == null)
-            {
-                return BadRequest("question data is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            await _questionRepository.CreateAsync(question);
-            return Ok("Create method in Question Controller is working!");
-        }
+            if (question == null) return BadRequest("Question data is null.");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            var createDto = new CreateQuestionDTO().ToDTO(question);
+            var ok = await _questionService.Create(createDto).ConfigureAwait(false);
+            if (!ok) return BadRequest();
+            return Ok();
+        }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Question updatedQuestion)
+        public async Task<IActionResult> Update(int id, UpdateQuestionViewModel updatedQuestion)
         {
-            if (updatedQuestion == null)
-                return BadRequest("this question is null");
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("this question doesn't follow the question Constraints");
-            }
-            await _questionRepository.UpdateAsync(updatedQuestion);
-            return Ok($"the Question with id {id} is updated successully");
-        }
+            if (updatedQuestion == null) return BadRequest("this question is null");
+            if (!ModelState.IsValid) return BadRequest("this question doesn't follow the constraints");
 
+            var updatedDto = new UpdateQuestionDto().ToDTO(updatedQuestion);
+            var ok = await _questionService.Update(id, updatedDto).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _questionRepository.DeleteAsync(id);
-            return Ok($"the question with id {id} is deleted successully");
+            var ok = await _questionService.Delete(id).ConfigureAwait(false);
+            if (!ok) return NotFound();
+            return Ok();
         }
     }
 }

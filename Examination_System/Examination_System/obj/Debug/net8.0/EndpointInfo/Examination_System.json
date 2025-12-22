@@ -5,6 +5,174 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Choice": {
+      "get": {
+        "tags": [
+          "Choice"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetChoiceViewModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetChoiceViewModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetChoiceViewModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Choice"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChoiceViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChoiceViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateChoiceViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Choice/{id}": {
+      "get": {
+        "tags": [
+          "Choice"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetChoiceViewModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetChoiceViewModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetChoiceViewModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Choice"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChoiceViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChoiceViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateChoiceViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Choice"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Course": {
       "get": {
         "tags": [
@@ -18,7 +186,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Course"
+                    "$ref": "#/components/schemas/GetCoursesViewModel"
                   }
                 }
               },
@@ -26,7 +194,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Course"
+                    "$ref": "#/components/schemas/GetCoursesViewModel"
                   }
                 }
               },
@@ -34,7 +202,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Course"
+                    "$ref": "#/components/schemas/GetCoursesViewModel"
                   }
                 }
               }
@@ -50,17 +218,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/CreateCourseViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/CreateCourseViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/CreateCourseViewModel"
               }
             }
           }
@@ -94,17 +262,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Course"
+                  "$ref": "#/components/schemas/GetCoursesViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Course"
+                  "$ref": "#/components/schemas/GetCoursesViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Course"
+                  "$ref": "#/components/schemas/GetCoursesViewModel"
                 }
               }
             }
@@ -130,17 +298,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/UpdateCourseViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/UpdateCourseViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
+                "$ref": "#/components/schemas/UpdateCourseViewModel"
               }
             }
           }
@@ -186,7 +354,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Exam"
+                    "$ref": "#/components/schemas/GetExamViewModel"
                   }
                 }
               },
@@ -194,7 +362,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Exam"
+                    "$ref": "#/components/schemas/GetExamViewModel"
                   }
                 }
               },
@@ -202,7 +370,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Exam"
+                    "$ref": "#/components/schemas/GetExamViewModel"
                   }
                 }
               }
@@ -218,17 +386,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/CreateExamViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/CreateExamViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/CreateExamViewModel"
               }
             }
           }
@@ -262,17 +430,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Exam"
+                  "$ref": "#/components/schemas/GetExamViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Exam"
+                  "$ref": "#/components/schemas/GetExamViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Exam"
+                  "$ref": "#/components/schemas/GetExamViewModel"
                 }
               }
             }
@@ -298,17 +466,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/UpdateExamViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/UpdateExamViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Exam"
+                "$ref": "#/components/schemas/UpdateExamViewModel"
               }
             }
           }
@@ -341,6 +509,174 @@
         }
       }
     },
+    "/api/Feedback": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetFeedbackViewModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetFeedbackViewModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetFeedbackViewModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Feedback"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFeedbackViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFeedbackViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFeedbackViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Feedback/{id}": {
+      "get": {
+        "tags": [
+          "Feedback"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFeedbackViewModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFeedbackViewModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFeedbackViewModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Feedback"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFeedbackViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFeedbackViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFeedbackViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Feedback"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Instructor": {
       "get": {
         "tags": [
@@ -354,7 +690,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Instructor"
+                    "$ref": "#/components/schemas/GetInstructorViewModel"
                   }
                 }
               },
@@ -362,7 +698,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Instructor"
+                    "$ref": "#/components/schemas/GetInstructorViewModel"
                   }
                 }
               },
@@ -370,7 +706,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Instructor"
+                    "$ref": "#/components/schemas/GetInstructorViewModel"
                   }
                 }
               }
@@ -386,17 +722,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/CreateInstructorViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/CreateInstructorViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/CreateInstructorViewModel"
               }
             }
           }
@@ -430,17 +766,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Instructor"
+                  "$ref": "#/components/schemas/GetInstructorViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Instructor"
+                  "$ref": "#/components/schemas/GetInstructorViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Instructor"
+                  "$ref": "#/components/schemas/GetInstructorViewModel"
                 }
               }
             }
@@ -466,17 +802,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/UpdateInstructorViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/UpdateInstructorViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Instructor"
+                "$ref": "#/components/schemas/UpdateInstructorViewModel"
               }
             }
           }
@@ -522,7 +858,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Question"
+                    "$ref": "#/components/schemas/GetQuestionViewModel"
                   }
                 }
               },
@@ -530,7 +866,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Question"
+                    "$ref": "#/components/schemas/GetQuestionViewModel"
                   }
                 }
               },
@@ -538,7 +874,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Question"
+                    "$ref": "#/components/schemas/GetQuestionViewModel"
                   }
                 }
               }
@@ -554,17 +890,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/CreateQuestionViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/CreateQuestionViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/CreateQuestionViewModel"
               }
             }
           }
@@ -598,17 +934,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Question"
+                  "$ref": "#/components/schemas/GetQuestionViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Question"
+                  "$ref": "#/components/schemas/GetQuestionViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Question"
+                  "$ref": "#/components/schemas/GetQuestionViewModel"
                 }
               }
             }
@@ -634,17 +970,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/UpdateQuestionViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/UpdateQuestionViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Question"
+                "$ref": "#/components/schemas/UpdateQuestionViewModel"
               }
             }
           }
@@ -677,6 +1013,174 @@
         }
       }
     },
+    "/api/Result": {
+      "get": {
+        "tags": [
+          "Result"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetResultViewModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetResultViewModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetResultViewModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Result"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateResultViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Result/{id}": {
+      "get": {
+        "tags": [
+          "Result"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetResultViewModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetResultViewModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetResultViewModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Result"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateResultViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateResultViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateResultViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Result"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Student": {
       "get": {
         "tags": [
@@ -690,7 +1194,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Student"
+                    "$ref": "#/components/schemas/GetStudentViewModel"
                   }
                 }
               },
@@ -698,7 +1202,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Student"
+                    "$ref": "#/components/schemas/GetStudentViewModel"
                   }
                 }
               },
@@ -706,7 +1210,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Student"
+                    "$ref": "#/components/schemas/GetStudentViewModel"
                   }
                 }
               }
@@ -722,17 +1226,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/CreateStudentViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/CreateStudentViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/CreateStudentViewModel"
               }
             }
           }
@@ -766,17 +1270,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Student"
+                  "$ref": "#/components/schemas/GetStudentViewModel"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Student"
+                  "$ref": "#/components/schemas/GetStudentViewModel"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Student"
+                  "$ref": "#/components/schemas/GetStudentViewModel"
                 }
               }
             }
@@ -802,17 +1306,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentViewModel"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentViewModel"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Student"
+                "$ref": "#/components/schemas/UpdateStudentViewModel"
               }
             }
           }
@@ -848,20 +1352,9 @@
   },
   "components": {
     "schemas": {
-      "Choice": {
+      "CreateChoiceViewModel": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
           "choiceBody": {
             "type": "string",
             "nullable": true
@@ -872,27 +1365,13 @@
           "questionId": {
             "type": "integer",
             "format": "int32"
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
           }
         },
         "additionalProperties": false
       },
-      "Course": {
+      "CreateCourseViewModel": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
           "name": {
             "type": "string",
             "nullable": true
@@ -904,45 +1383,176 @@
           "creditHours": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateExamViewModel": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
           },
-          "instructorId": {
+          "type": {
+            "$ref": "#/components/schemas/ExamType"
+          },
+          "numberOfQuestions": {
             "type": "integer",
-            "format": "int32",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateFeedbackViewModel": {
+        "required": [
+          "comments",
+          "rating",
+          "resultId"
+        ],
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comments": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "resultId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateInstructorViewModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
             "nullable": true
           },
-          "instructor": {
-            "$ref": "#/components/schemas/Instructor"
-          },
-          "exams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Exam"
-            },
+          "email": {
+            "type": "string",
             "nullable": true
           },
-          "studentCourses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentCourse"
-            },
+          "department": {
+            "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Exam": {
+      "CreateQuestionViewModel": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "$ref": "#/components/schemas/QuestionLevel"
+          },
+          "questionBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructorId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateResultViewModel": {
+        "type": "object",
+        "properties": {
+          "score": {
+            "type": "number",
+            "format": "double"
+          },
+          "studentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "examId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateStudentViewModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExamType": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "GetChoiceViewModel": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
-          "isDeleted": {
+          "choiceBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
             "type": "boolean"
           },
-          "createdAt": {
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCoursesViewModel": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditHours": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetExamViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
           },
           "title": {
             "type": "string",
@@ -958,68 +1568,38 @@
           "courseId": {
             "type": "integer",
             "format": "int32"
-          },
-          "course": {
-            "$ref": "#/components/schemas/Course"
-          },
-          "examQuestions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExamQuestion"
-            },
-            "nullable": true
-          },
-          "studentExams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentExam"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ExamQuestion": {
-        "type": "object",
-        "properties": {
-          "examId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "exam": {
-            "$ref": "#/components/schemas/Exam"
-          },
-          "questionId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "question": {
-            "$ref": "#/components/schemas/Question"
-          }
-        },
-        "additionalProperties": false
-      },
-      "ExamType": {
-        "enum": [
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
-      },
-      "Instructor": {
+      "GetFeedbackViewModel": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
-          "isDeleted": {
-            "type": "boolean"
+          "rating": {
+            "type": "integer",
+            "format": "int32"
           },
-          "createdAt": {
+          "comments": {
             "type": "string",
-            "format": "date-time"
+            "nullable": true
+          },
+          "resultId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetInstructorViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
           },
           "name": {
             "type": "string",
@@ -1032,37 +1612,16 @@
           "department": {
             "type": "string",
             "nullable": true
-          },
-          "courses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Course"
-            },
-            "nullable": true
-          },
-          "questions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Question"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Question": {
+      "GetQuestionViewModel": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
-          },
-          "isDeleted": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
           },
           "level": {
             "$ref": "#/components/schemas/QuestionLevel"
@@ -1074,22 +1633,47 @@
           "instructorId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetResultViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
           },
-          "instructor": {
-            "$ref": "#/components/schemas/Instructor"
+          "score": {
+            "type": "number",
+            "format": "double"
           },
-          "choices": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Choice"
-            },
+          "studentId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
-          "examQuestions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ExamQuestion"
-            },
+          "examId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetStudentViewModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1104,20 +1688,88 @@
         "type": "integer",
         "format": "int32"
       },
-      "Student": {
+      "UpdateChoiceViewModel": {
         "type": "object",
         "properties": {
-          "id": {
+          "choiceBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "isCorrect": {
+            "type": "boolean"
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateCourseViewModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditHours": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateExamViewModel": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ExamType"
+          },
+          "numberOfQuestions": {
             "type": "integer",
             "format": "int32"
           },
-          "isDeleted": {
-            "type": "boolean"
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateFeedbackViewModel": {
+        "required": [
+          "comments",
+          "rating",
+          "resultId"
+        ],
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "format": "int32"
           },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
+          "comments": {
+            "minLength": 1,
+            "type": "string"
           },
+          "resultId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateInstructorViewModel": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string",
             "nullable": true
@@ -1126,71 +1778,60 @@
             "type": "string",
             "nullable": true
           },
-          "studentCourses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentCourse"
-            },
-            "nullable": true
-          },
-          "studentExams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StudentExam"
-            },
+          "department": {
+            "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "StudentCourse": {
+      "UpdateQuestionViewModel": {
         "type": "object",
         "properties": {
-          "studentId": {
+          "level": {
+            "$ref": "#/components/schemas/QuestionLevel"
+          },
+          "questionBody": {
+            "type": "string",
+            "nullable": true
+          },
+          "instructorId": {
             "type": "integer",
             "format": "int32"
-          },
-          "student": {
-            "$ref": "#/components/schemas/Student"
-          },
-          "courseId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "course": {
-            "$ref": "#/components/schemas/Course"
           }
         },
         "additionalProperties": false
       },
-      "StudentExam": {
+      "UpdateResultViewModel": {
         "type": "object",
         "properties": {
           "score": {
             "type": "number",
             "format": "double"
           },
-          "isSubmitted": {
-            "type": "boolean"
-          },
-          "submissionTime": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "studentId": {
             "type": "integer",
-            "format": "int32"
-          },
-          "student": {
-            "$ref": "#/components/schemas/Student"
+            "format": "int32",
+            "nullable": true
           },
           "examId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateStudentViewModel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
           },
-          "exam": {
-            "$ref": "#/components/schemas/Exam"
+          "email": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
