@@ -1,0 +1,17 @@
+essintilial functions for
+
+- fix async and await usage
+- add bussiness logic
+- add code validation 
+- add bussiness validation
+- add uuid v7 
+- update naming conventions of methods and variables
+- Composition 
+- Dependency Injection
+
+
+
+
+Extra functions for
+
+- filter based on pridicate endpoint

@@ -1,11 +1,11 @@
 ﻿namespace Examination_System.Models
 {
-    public class ExamQuestion:BaseModel
+    public class QuestionCourse: BaseModel
     {
-        public int ExamId { get; set; }
-        public Exam? Exam { get; set; }
-
         public int QuestionId { get; set; }
         public Question? Question { get; set; }
+        public int CourseId { get; set; }
+        public Course? Course { get; set; }
+
     }
 }

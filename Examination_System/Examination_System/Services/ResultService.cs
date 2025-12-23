@@ -20,7 +20,7 @@ namespace Examination_System.Services
             return _generalRepository.GetAll<GetAllResultsDTOs>(r => new GetAllResultsDTOs
             {
                 Id = r.Id,
-                Score = r.Score,
+                Score =r.Score,
                 StudentId = r.StudentExam == null ? (int?)null : r.StudentExam.StudentId,
                 ExamId = r.StudentExam == null ? (int?)null : r.StudentExam.ExamId
             });
