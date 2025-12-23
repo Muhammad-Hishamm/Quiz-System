@@ -12,32 +12,36 @@ namespace Examination_System.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-                 optionsBuilder.UseSqlServer("Server=MUHAMMAD-HISHAM\\SQLEXPRESS;Database=ExamSystem;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=True")
+            optionsBuilder.UseSqlServer("Server=MUHAMMAD-HISHAM\\SQLEXPRESS;Database=ExamSystem;Integrated Security=True;Pooling=False;Encrypt=True;Trust Server Certificate=True")
                 .EnableSensitiveDataLogging()
                 .LogTo(log => Debug.WriteLine(log), LogLevel.Information)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // StudentCourse M2M
+            modelBuilder.Entity<ExamQuestion>()
+                .HasKey(eq => new { eq.ExamId, eq.QuestionId });
+
+            modelBuilder.Entity<InstructorStudent>()
+                .HasKey(IS => new { IS.InstructorId, IS.StudentId });
+
             modelBuilder.Entity<StudentCourse>()
                 .HasKey(sc => new { sc.StudentId, sc.CourseId });
 
             modelBuilder.Entity<StudentCourse>()
                 .HasOne(sc => sc.Student)
                 .WithMany(s => s.StudentCourses)
-                .HasForeignKey(sc => sc.StudentId);
+                .HasForeignKey(sc => sc.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<StudentCourse>()
                 .HasOne(sc => sc.Course)
                 .WithMany(c => c.StudentCourses)
-                .HasForeignKey(sc => sc.CourseId);
-
-            // StudentExam M2M
-            modelBuilder.Entity<StudentExam>()
-                .HasKey(se => new { se.StudentId, se.ExamId });
+                .HasForeignKey(sc => sc.CourseId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<StudentExam>()
                 .HasOne(se => se.Student)
@@ -51,47 +55,65 @@ namespace Examination_System.Data
                 .HasForeignKey(se => se.ExamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // QuizQuestion M2M
-            modelBuilder.Entity<ExamQuestion>()
-                .HasKey(eq => new { eq.ExamId, eq.QuestionId });
-
             modelBuilder.Entity<ExamQuestion>()
                 .HasOne(eq => eq.Exam)
                 .WithMany(e => e.ExamQuestions)
                 .HasForeignKey(eq => eq.ExamId)
-                .OnDelete(DeleteBehavior.Restrict); //  prevents cascade path
+                .OnDelete(DeleteBehavior.Restrict); // prevents cascade path
 
             modelBuilder.Entity<ExamQuestion>()
                 .HasOne(eq => eq.Question)
                 .WithMany(q => q.ExamQuestions)
                 .HasForeignKey(eq => eq.QuestionId)
-                .OnDelete(DeleteBehavior.Restrict); //  prevents cascade path
+                .OnDelete(DeleteBehavior.Restrict); // prevents cascade path
 
 
-            // Instructors → Choice (1-to-Many)
             modelBuilder.Entity<Question>()
-                .HasMany(q => q.Choices)
+                .HasMany(q => q.QuestionChoices)
                 .WithOne(c => c.Question)
-                .HasForeignKey(c => c.QuestionId);
+                .HasForeignKey(c => c.QuestionId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Course → Quiz (1-to-Many)
+            modelBuilder.Entity<Instructor>()
+                .HasMany(i => i.Choices)
+                .WithOne(c => c.Instructor)
+                .HasForeignKey(c => c.InstructorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<Course>()
                 .HasMany(c => c.Exams)
                 .WithOne(q => q.Course)
-                .HasForeignKey(q => q.CourseId);
+                .HasForeignKey(q => q.CourseId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Instructor → Course (1-to-Many)
             modelBuilder.Entity<Instructor>()
                 .HasMany(i => i.Courses)
                 .WithOne(c => c.Instructor)
-                .HasForeignKey(c => c.InstructorId);
+                .HasForeignKey(c => c.InstructorId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            // Instructor → Instructors (1-to-Many)
             modelBuilder.Entity<Instructor>()
                 .HasMany(i => i.Questions)
                 .WithOne(q => q.Instructor)
-                .HasForeignKey(q => q.InstructorId);
+                .HasForeignKey(q => q.InstructorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Result>()
+                .HasOne(r => r.Student)
+                .WithMany(s => s.Results)
+                .HasForeignKey(r => r.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.Student)
+                .WithMany(s => s.Feedbacks)
+                .HasForeignKey(f => f.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Result>()
+                .HasOne(r => r.Feedback)
+                .WithOne(f => f.Result)
+                .HasForeignKey<Feedback>(f => f.ResultId);
         }
 
         public DbSet<Course> Courses { get; set; }
@@ -106,10 +128,7 @@ namespace Examination_System.Data
         public DbSet<StudentCourse> StudentCourses { get; set; }
         public DbSet<StudentExam> StudentExams { get; set; }
         public DbSet<ExamQuestion> ExamQuestions { get; set; }
-
-
-
-
-
+        public DbSet<InstructorStudent> InstructorStudents { get; set; }
+        public DbSet<Answer> Answers { get; set; }
     }
 }

@@ -3,10 +3,8 @@
     public class Choice:BaseModel
     {
         public string ChoiceBody { get; set; }
-        public bool IsCorrect { get; set; }
-
-        // Foreign key to Instructors
-        public int QuestionId { get; set; }
-        public Question? Question { get; set; }
+        public int? InstructorId { get; set; }
+        public Instructor? Instructor { get; set; }
+        public ICollection<QuestionChoice>? QuestionChoices { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Examination_System.Services
             {
                 Id = f.Id,
                 Rating = f.Rating,
-                Comments = f.Comments,
+                Comments = f.Comment,
                 ResultId = f.ResultId
             });
         }
@@ -32,7 +32,7 @@ namespace Examination_System.Services
             {
                 Id = f.Id,
                 Rating = f.Rating,
-                Comments = f.Comments,
+                Comments = f.Comment,
                 ResultId = f.ResultId
             });
         }
@@ -43,7 +43,7 @@ namespace Examination_System.Services
             var entity = new Feedback
             {
                 Rating = dto.Rating,
-                Comments = dto.Comments,
+                Comment = dto.Comments,
                 ResultId = dto.ResultId
             };
 
@@ -60,7 +60,7 @@ namespace Examination_System.Services
             if (entityToUpdate == null) return false;
 
             entityToUpdate.Rating = dto.Rating;
-            entityToUpdate.Comments = dto.Comments;
+            entityToUpdate.Comment = dto.Comments;
             entityToUpdate.ResultId = dto.ResultId;
 
             await _repository.UpdateAsync(entityToUpdate).ConfigureAwait(false);

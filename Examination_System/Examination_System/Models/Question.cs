@@ -9,8 +9,12 @@ namespace Examination_System.Models
 
         public int InstructorId { get; set; }
         public Instructor? Instructor { get; set; }
-        public ICollection<Choice> Choices { get; set; }
+
+
+        public ICollection<Answer>? Answer { get; set; }
+        public ICollection<QuestionChoice> QuestionChoices { get; set; }
         public ICollection<ExamQuestion> ExamQuestions { get; set; }
+        public ICollection<QuestionCourse>QuestionCourses { get; set; }// مش عارف حاسس ده over engineering
 
     }
 }

@@ -36,6 +36,9 @@ namespace Examination_System.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -53,7 +56,52 @@ namespace Examination_System.Migrations
 
                     b.HasIndex("CourseId");
 
+                    b.HasIndex("InstructorId");
+
                     b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerBody")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ResultId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentExamId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("ResultId");
+
+                    b.HasIndex("StudentExamId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Choice", b =>
@@ -71,18 +119,15 @@ namespace Examination_System.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCorrect")
-                        .HasColumnType("bit");
+                    b.Property<int?>("InstructorId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("QuestionId");
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("Choices");
                 });
@@ -130,6 +175,15 @@ namespace Examination_System.Migrations
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("ExamId", "QuestionId");
 
                     b.HasIndex("QuestionId");
@@ -145,12 +199,15 @@ namespace Examination_System.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Comments")
+                    b.Property<string>("Comment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -161,9 +218,17 @@ namespace Examination_System.Migrations
                     b.Property<int>("ResultId")
                         .HasColumnType("int");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ResultId");
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("ResultId")
+                        .IsUnique();
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -199,6 +264,30 @@ namespace Examination_System.Migrations
                     b.ToTable("Instructors");
                 });
 
+            modelBuilder.Entity("Examination_System.Models.InstructorStudent", b =>
+                {
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("InstructorId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("InstructorStudents");
+                });
+
             modelBuilder.Entity("Examination_System.Models.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -230,6 +319,64 @@ namespace Examination_System.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("Examination_System.Models.QuestionChoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChoiceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChoiceId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuestionChoice");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.QuestionCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("QuestionCourse");
+                });
+
             modelBuilder.Entity("Examination_System.Models.Result", b =>
                 {
                     b.Property<int>("Id")
@@ -241,21 +388,28 @@ namespace Examination_System.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ExamId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<double>("Score")
                         .HasColumnType("float");
 
-                    b.Property<int?>("StudentExamExamId")
+                    b.Property<int>("StudentExamId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentExamStudentId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentExamStudentId", "StudentExamExamId");
+                    b.HasIndex("ExamId");
+
+                    b.HasIndex("StudentExamId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Results");
                 });
@@ -295,6 +449,15 @@ namespace Examination_System.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("StudentId", "CourseId");
 
                     b.HasIndex("CourseId");
@@ -304,11 +467,20 @@ namespace Examination_System.Migrations
 
             modelBuilder.Entity("Examination_System.Models.StudentExam", b =>
                 {
-                    b.Property<int>("StudentId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("ExamId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsSubmitted")
                         .HasColumnType("bit");
@@ -316,12 +488,17 @@ namespace Examination_System.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("float");
 
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("SubmissionTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("StudentId", "ExamId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ExamId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("StudentExams");
                 });
@@ -331,28 +508,63 @@ namespace Examination_System.Migrations
                     b.HasOne("Examination_System.Models.Course", "Course")
                         .WithMany("Exams")
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Instructor", "Instructor")
+                        .WithMany("Exams")
+                        .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
+
+                    b.Navigation("Instructor");
                 });
 
-            modelBuilder.Entity("Examination_System.Models.Choice", b =>
+            modelBuilder.Entity("Examination_System.Models.Answer", b =>
                 {
                     b.HasOne("Examination_System.Models.Question", "Question")
-                        .WithMany("Choices")
+                        .WithMany("Answer")
                         .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Examination_System.Models.Result", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("ResultId");
+
+                    b.HasOne("Examination_System.Models.StudentExam", "StudentExam")
+                        .WithMany("Answers")
+                        .HasForeignKey("StudentExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Student", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("StudentId");
+
                     b.Navigation("Question");
+
+                    b.Navigation("StudentExam");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.Choice", b =>
+                {
+                    b.HasOne("Examination_System.Models.Instructor", "Instructor")
+                        .WithMany("Choices")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Course", b =>
                 {
                     b.HasOne("Examination_System.Models.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("InstructorId");
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Instructor");
                 });
@@ -378,13 +590,48 @@ namespace Examination_System.Migrations
 
             modelBuilder.Entity("Examination_System.Models.Feedback", b =>
                 {
-                    b.HasOne("Examination_System.Models.Result", "Result")
-                        .WithMany()
-                        .HasForeignKey("ResultId")
+                    b.HasOne("Exam", "Exam")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("ExamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Examination_System.Models.Result", "Result")
+                        .WithOne("Feedback")
+                        .HasForeignKey("Examination_System.Models.Feedback", "ResultId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Student", "Student")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
                     b.Navigation("Result");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.InstructorStudent", b =>
+                {
+                    b.HasOne("Examination_System.Models.Instructor", "Instructor")
+                        .WithMany("InstructorStudents")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Student", "Student")
+                        .WithMany("InstructorStudents")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Question", b =>
@@ -392,17 +639,69 @@ namespace Examination_System.Migrations
                     b.HasOne("Examination_System.Models.Instructor", "Instructor")
                         .WithMany("Questions")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("Examination_System.Models.QuestionChoice", b =>
+                {
+                    b.HasOne("Examination_System.Models.Choice", "Choice")
+                        .WithMany("QuestionChoices")
+                        .HasForeignKey("ChoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Question", "Question")
+                        .WithMany("QuestionChoices")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Choice");
+
+                    b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.QuestionCourse", b =>
+                {
+                    b.HasOne("Examination_System.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Question", "Question")
+                        .WithMany("QuestionCourses")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Question");
+                });
+
             modelBuilder.Entity("Examination_System.Models.Result", b =>
                 {
+                    b.HasOne("Exam", null)
+                        .WithMany("Results")
+                        .HasForeignKey("ExamId");
+
                     b.HasOne("Examination_System.Models.StudentExam", "StudentExam")
                         .WithMany()
-                        .HasForeignKey("StudentExamStudentId", "StudentExamExamId");
+                        .HasForeignKey("StudentExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Examination_System.Models.Student", "Student")
+                        .WithMany("Results")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
 
                     b.Navigation("StudentExam");
                 });
@@ -412,13 +711,13 @@ namespace Examination_System.Migrations
                     b.HasOne("Examination_System.Models.Course", "Course")
                         .WithMany("StudentCourses")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Examination_System.Models.Student", "Student")
                         .WithMany("StudentCourses")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -449,7 +748,16 @@ namespace Examination_System.Migrations
                 {
                     b.Navigation("ExamQuestions");
 
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("Results");
+
                     b.Navigation("StudentExams");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.Choice", b =>
+                {
+                    b.Navigation("QuestionChoices");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Course", b =>
@@ -461,23 +769,53 @@ namespace Examination_System.Migrations
 
             modelBuilder.Entity("Examination_System.Models.Instructor", b =>
                 {
+                    b.Navigation("Choices");
+
                     b.Navigation("Courses");
+
+                    b.Navigation("Exams");
+
+                    b.Navigation("InstructorStudents");
 
                     b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Question", b =>
                 {
-                    b.Navigation("Choices");
+                    b.Navigation("Answer");
 
                     b.Navigation("ExamQuestions");
+
+                    b.Navigation("QuestionChoices");
+
+                    b.Navigation("QuestionCourses");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.Result", b =>
+                {
+                    b.Navigation("Answers");
+
+                    b.Navigation("Feedback");
                 });
 
             modelBuilder.Entity("Examination_System.Models.Student", b =>
                 {
+                    b.Navigation("Answers");
+
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("InstructorStudents");
+
+                    b.Navigation("Results");
+
                     b.Navigation("StudentCourses");
 
                     b.Navigation("StudentExams");
+                });
+
+            modelBuilder.Entity("Examination_System.Models.StudentExam", b =>
+                {
+                    b.Navigation("Answers");
                 });
 #pragma warning restore 612, 618
         }

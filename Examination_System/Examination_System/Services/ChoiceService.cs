@@ -20,9 +20,7 @@ namespace Examination_System.Services
             return _choiceRepository.GetAll<GetAllChoicesDTOs>(c => new GetAllChoicesDTOs
             {
                 Id = c.Id,
-                ChoiceBody = c.ChoiceBody,
-                IsCorrect = c.IsCorrect,
-                QuestionId = c.QuestionId
+                ChoiceBody = c.ChoiceBody
             });
         }
 
@@ -31,9 +29,7 @@ namespace Examination_System.Services
             return _choiceRepository.GetByIdAsync<GetAllChoicesDTOs>(id, c => new GetAllChoicesDTOs
             {
                 Id = c.Id,
-                ChoiceBody = c.ChoiceBody,
-                IsCorrect = c.IsCorrect,
-                QuestionId = c.QuestionId
+                ChoiceBody = c.ChoiceBody
             });
         }
 
@@ -43,9 +39,7 @@ namespace Examination_System.Services
 
             var choice = new Choice
             {
-                ChoiceBody = dto.ChoiceBody,
-                IsCorrect = dto.IsCorrect,
-                QuestionId = dto.QuestionId
+                ChoiceBody = dto.ChoiceBody
             };
 
             await _choiceRepository.CreateAsync(choice).ConfigureAwait(false);
@@ -60,8 +54,6 @@ namespace Examination_System.Services
             if (existing == null) return false;
 
             existing.ChoiceBody = updatedChoice.ChoiceBody;
-            existing.IsCorrect = updatedChoice.IsCorrect;
-            existing.QuestionId = updatedChoice.QuestionId;
 
             await _choiceRepository.UpdateAsync(existing).ConfigureAwait(false);
             return true;
