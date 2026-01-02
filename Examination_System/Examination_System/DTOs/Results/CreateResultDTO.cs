@@ -1,4 +1,4 @@
-using Examination_System.ViewModels;
+using Examination_System.ViewModels.Result;
 
 namespace Examination_System.DTOs.Results
 {

@@ -1,5 +1,5 @@
 using Examination_System.Data.Enums;
-using Examination_System.ViewModels;
+using Examination_System.ViewModels.Exam;
 
 namespace Examination_System.DTOs.Exams
 {

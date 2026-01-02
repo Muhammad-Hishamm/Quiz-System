@@ -1,6 +1,9 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Examination_System.DTOs.Feedbacks;
 using Examination_System.Models;
 using Examination_System.Repositories;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,68 +12,52 @@ namespace Examination_System.Services
     public class FeedbackService
     {
         private readonly GeneralRepository<Feedback> _repository;
+        private readonly IMapper _mapper;
 
-        public FeedbackService()
+        public FeedbackService(IMapper mapper)
         {
+            _mapper = mapper;
             _repository = new GeneralRepository<Feedback>();
         }
 
-        public IQueryable<GetAllFeedbacksDTOs>? GetAll()
+        public IEnumerable<GetAllFeedbacksDTOs>? GetAll()
         {
-            return _repository.GetAll<GetAllFeedbacksDTOs>(f => new GetAllFeedbacksDTOs
-            {
-                Id = f.Id,
-                Rating = f.Rating,
-                Comments = f.Comment,
-                ResultId = f.ResultId
-            });
+            var query = _repository.GetAll()
+                        .ProjectTo<GetAllFeedbacksDTOs>(_mapper.ConfigurationProvider);
+            return query;
         }
 
-        public Task<GetAllFeedbacksDTOs?> GetByIdAsync(int id)
+        public GetAllFeedbacksDTOs GetById(int id)
         {
-            return _repository.GetByIdAsync<GetAllFeedbacksDTOs>(id, f => new GetAllFeedbacksDTOs
-            {
-                Id = f.Id,
-                Rating = f.Rating,
-                Comments = f.Comment,
-                ResultId = f.ResultId
-            });
+            var dto = _repository.GetById(id)
+                      .ProjectTo<GetAllFeedbacksDTOs>(_mapper.ConfigurationProvider)
+                      .FirstOrDefault();
+            return dto;
         }
+
         public async Task<bool> Create(CreateFeedbackDTO dto)
         {
-            if (dto is null) return false;
-
-            var entity = new Feedback
-            {
-                Rating = dto.Rating,
-                Comment = dto.Comments,
-                ResultId = dto.ResultId
-            };
-
-            await _repository.CreateAsync(entity).ConfigureAwait(false);
-            return true;
+            if (dto == null) return false;
+            var entity = _mapper.Map<Feedback>(dto);
+            return await _repository.CreateAsync(entity).ConfigureAwait(false);
         }
 
         public async Task<bool> Update(int id, UpdateFeedbackDto dto)
         {
-            if (dto is null) return false;
+            if (dto == null) return false;
+            if (this.GetById(id) == null) return false;
 
-            // Retrieve the tracked entity (entity-returning overload)
-            var entityToUpdate = await _repository.GetByIdAsync(id).ConfigureAwait(false);
-            if (entityToUpdate == null) return false;
-
-            entityToUpdate.Rating = dto.Rating;
-            entityToUpdate.Comment = dto.Comments;
-            entityToUpdate.ResultId = dto.ResultId;
-
-            await _repository.UpdateAsync(entityToUpdate).ConfigureAwait(false);
-            return true;
+            var entity = _mapper.Map<Feedback>(dto);
+            entity.Id = id;
+            var result = await _repository.UpdateAsync(entity).ConfigureAwait(false);
+            return result;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await this.GetByIdAsync(id).ConfigureAwait(false);
+            var existing = this.GetById(id);
             if (existing == null) return false;
+
             await _repository.DeleteAsync(id).ConfigureAwait(false);
             return true;
         }

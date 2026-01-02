@@ -1,8 +1,11 @@
+using AutoMapper;
 using Examination_System.DTOs.Results;
+using Examination_System.Models;
 using Examination_System.Services;
 using Examination_System.ViewModels;
+using Examination_System.ViewModels.Result;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Examination_System.Controllers.Results
@@ -12,63 +15,55 @@ namespace Examination_System.Controllers.Results
     public class ResultController : ControllerBase
     {
         private readonly ResultService _resultService;
+        private readonly IMapper _mapper;
 
-        public ResultController()
-
+        public ResultController(ResultService resultService, IMapper mapper)
         {
-            _resultService = new ResultService();
+            _resultService = resultService;
+            _mapper = mapper;
         }
 
         // GET: api/Result
         [HttpGet]
-        public ActionResult<IQueryable<GetResultViewModel>> Get()
+        public ResponseViewModel<IEnumerable<GetResultViewModel>> Get()
         {
-            var vm = new GetResultViewModel();
             var dtos = _resultService.GetAll();
-            var results = dtos.Select(dto => vm.ToViewModel(dto));
-            return Ok(results);
+            var vm = _mapper.Map<IEnumerable<GetResultViewModel>>(dtos);
+            return new ResponseViewModel<IEnumerable<GetResultViewModel>> { Data = vm, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Result/1
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetResultViewModel>> GetById(int id)
+        public ResponseViewModel<GetResultViewModel> GetById(int id)
         {
-            var vm = new GetResultViewModel();
-            var dto = await _resultService.GetByIdAsync(id).ConfigureAwait(false);
-            if (dto == null) return NotFound();
-            return Ok(vm.ToViewModel(dto));
+            var dto = _resultService.GetById(id);
+            if (dto == null) return new ResponseViewModel<GetResultViewModel> { Data = null, IsSuccess = false, ErrorCode = ErrorCode.CourseNotFound, Message = "Result not found." };
+
+            var res = _mapper.Map<GetResultViewModel>(dto);
+            return new ResponseViewModel<GetResultViewModel>() { Data = res, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateResultViewModel model)
+        public async Task<ResponseViewModel<bool>> Create(CreateResultViewModel model)
         {
-            if (model == null) return BadRequest("Result data is null.");
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var createDto = new CreateResultDTO().ToDTO(model);
-            var ok = await _resultService.Create(createDto).ConfigureAwait(false);
-            if (!ok) return BadRequest();
-            return Ok();
+            var dto = _mapper.Map<CreateResultDTO>(model);
+            var ok = await _resultService.Create(dto).ConfigureAwait(false);
+            return new ResponseViewModel<bool> { Data = ok, IsSuccess = ok, ErrorCode = ok ? ErrorCode.NoError : ErrorCode.BadRequest, Message = ok ? string.Empty : "Failed to create result." };
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateResultViewModel updated)
+        public async Task<ResponseViewModel<bool>> Update(int id, UpdateResultViewModel updated)
         {
-            if (updated == null) return BadRequest("this result is null");
-            if (!ModelState.IsValid) return BadRequest("this result doesn't follow the constraints");
-
-            var updatedDto = new UpdateResultDto().ToDTO(updated);
-            var ok = await _resultService.Update(id, updatedDto).ConfigureAwait(false);
-            if (!ok) return NotFound();
-            return Ok();
+            var dto = _mapper.Map<UpdateResultDto>(updated);
+            var ok = await _resultService.Update(id, dto).ConfigureAwait(false);
+            return new ResponseViewModel<bool> { Data = ok, IsSuccess = ok, ErrorCode = ok ? ErrorCode.NoError : ErrorCode.CourseNotFound, Message = ok ? string.Empty : "Result not found." };
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ResponseViewModel<bool>> Delete(int id)
         {
             var ok = await _resultService.Delete(id).ConfigureAwait(false);
-            if (!ok) return NotFound();
-            return Ok();
+            return new ResponseViewModel<bool> { Data = ok, IsSuccess = ok, ErrorCode = ok ? ErrorCode.NoError : ErrorCode.CourseNotFound, Message = ok ? string.Empty : "Result not found." };
         }
     }
 }

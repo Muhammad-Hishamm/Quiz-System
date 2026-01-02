@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetChoiceViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Choice.GetChoiceViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -29,11 +29,21 @@
     "Parameters": [
       {
         "Name": "choice",
-        "Type": "Examination_System.ViewModels.CreateChoiceViewModel",
+        "Type": "Examination_System.ViewModels.Choice.CreateChoiceViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Choices.ChoiceController",
@@ -51,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetChoiceViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Choice.GetChoiceViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -76,11 +86,21 @@
       },
       {
         "Name": "updatedChoice",
-        "Type": "Examination_System.ViewModels.UpdateChoiceViewModel",
+        "Type": "Examination_System.ViewModels.Choice.UpdateChoiceViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Choices.ChoiceController",
@@ -96,7 +116,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Courses.CourseController",
@@ -108,7 +138,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -128,11 +158,21 @@
     "Parameters": [
       {
         "Name": "course",
-        "Type": "Examination_System.ViewModels.CreateCourseViewModel",
+        "Type": "Examination_System.ViewModels.Course.CreateCourseViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Courses.CourseController",
@@ -150,7 +190,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetCoursesViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -175,11 +215,21 @@
       },
       {
         "Name": "updatedCourse",
-        "Type": "Examination_System.ViewModels.UpdateCourseViewModel",
+        "Type": "Examination_System.ViewModels.Course.UpdateCourseViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Courses.CourseController",
@@ -195,7 +245,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
@@ -207,7 +267,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetExamViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Exam.GetExamViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -227,11 +287,21 @@
     "Parameters": [
       {
         "Name": "exam",
-        "Type": "Examination_System.ViewModels.CreateExamViewModel",
+        "Type": "Examination_System.ViewModels.Exam.CreateExamViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
@@ -249,7 +319,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetExamViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Exam.GetExamViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -274,11 +344,21 @@
       },
       {
         "Name": "updatedExam",
-        "Type": "Examination_System.ViewModels.UpdateExamViewModel",
+        "Type": "Examination_System.ViewModels.Exam.UpdateExamViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
@@ -294,7 +374,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Feedbacks.FeedbackController",
@@ -306,7 +396,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.GetFeedbackViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Feedback.GetFeedbackViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -325,12 +415,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "model",
-        "Type": "Examination_System.ViewModels.CreateFeedbackViewModel",
+        "Name": "feedback",
+        "Type": "Examination_System.ViewModels.Feedback.CreateFeedbackViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Feedbacks.FeedbackController",
@@ -348,7 +448,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetFeedbackViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Feedback.GetFeedbackViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -372,12 +472,22 @@
         "IsRequired": true
       },
       {
-        "Name": "updated",
-        "Type": "Examination_System.ViewModels.UpdateFeedbackViewModel",
+        "Name": "updatedFeedback",
+        "Type": "Examination_System.ViewModels.Feedback.UpdateFeedbackViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Feedbacks.FeedbackController",
@@ -393,7 +503,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
@@ -405,7 +525,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetInstructorViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Instructor.GetInstructorViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -425,11 +545,21 @@
     "Parameters": [
       {
         "Name": "instructor",
-        "Type": "Examination_System.ViewModels.CreateInstructorViewModel",
+        "Type": "Examination_System.ViewModels.Instructor.CreateInstructorViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
@@ -447,7 +577,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetInstructorViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Instructor.GetInstructorViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -472,11 +602,21 @@
       },
       {
         "Name": "updatedInstructor",
-        "Type": "Examination_System.ViewModels.UpdateInstructorViewModel",
+        "Type": "Examination_System.ViewModels.Instructor.UpdateInstructorViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
@@ -492,7 +632,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
@@ -504,7 +654,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetQuestionViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Question.GetQuestionViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -524,11 +674,21 @@
     "Parameters": [
       {
         "Name": "question",
-        "Type": "Examination_System.ViewModels.CreateQuestionViewModel",
+        "Type": "Examination_System.ViewModels.Question.CreateQuestionViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
@@ -546,7 +706,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetQuestionViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Question.GetQuestionViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -571,11 +731,21 @@
       },
       {
         "Name": "updatedQuestion",
-        "Type": "Examination_System.ViewModels.UpdateQuestionViewModel",
+        "Type": "Examination_System.ViewModels.Question.UpdateQuestionViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
@@ -591,7 +761,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Results.ResultController",
@@ -603,7 +783,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetResultViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Result.GetResultViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -623,11 +803,21 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "Examination_System.ViewModels.CreateResultViewModel",
+        "Type": "Examination_System.ViewModels.Result.CreateResultViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Results.ResultController",
@@ -645,7 +835,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetResultViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Result.GetResultViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -670,11 +860,21 @@
       },
       {
         "Name": "updated",
-        "Type": "Examination_System.ViewModels.UpdateResultViewModel",
+        "Type": "Examination_System.ViewModels.Result.UpdateResultViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Results.ResultController",
@@ -690,7 +890,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",
@@ -702,7 +912,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Linq.IQueryable\u00601[[Examination_System.ViewModels.GetStudentViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Student.GetStudentViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -722,11 +932,21 @@
     "Parameters": [
       {
         "Name": "student",
-        "Type": "Examination_System.ViewModels.CreateStudentViewModel",
+        "Type": "Examination_System.ViewModels.Student.CreateStudentViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",
@@ -744,7 +964,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Examination_System.ViewModels.GetStudentViewModel",
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Student.GetStudentViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -769,11 +989,21 @@
       },
       {
         "Name": "updatedStudent",
-        "Type": "Examination_System.ViewModels.UpdateStudentViewModel",
+        "Type": "Examination_System.ViewModels.Student.UpdateStudentViewModel",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "Examination_System.Controllers.Students.StudentController",
@@ -789,6 +1019,16 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
