@@ -1,4 +1,4 @@
-using Examination_System.ViewModels;
+using Examination_System.ViewModels.Feedback;
 
 namespace Examination_System.DTOs.Feedbacks
 {

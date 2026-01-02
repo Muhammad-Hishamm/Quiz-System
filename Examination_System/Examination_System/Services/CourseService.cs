@@ -1,71 +1,59 @@
-﻿using Examination_System.DTOs.Courses;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Examination_System.DTOs.Courses;
 using Examination_System.Models;
 using Examination_System.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Examination_System.Services
 {
     public class CourseService
     {
         GeneralRepository<Course> _GeneralRepository;
-        public CourseService()
+        IMapper _mapper;
+        public CourseService(IMapper mapper)
         {
+            _mapper = mapper;
             _GeneralRepository = new GeneralRepository<Course>();
         }
 
-        public IQueryable<GetAllCoursesDTOs>? GetAll()
+        public IEnumerable<GetAllCoursesDTOs>? GetAll()
         {
-            return _GeneralRepository.GetAll<GetAllCoursesDTOs>(c => new GetAllCoursesDTOs
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Description = c.Description,
-                CreditHours = c.CreditHours
-            });
+            var query = _GeneralRepository.GetAll()
+                        .ProjectTo<GetAllCoursesDTOs>(_mapper.ConfigurationProvider);
+            return query;
         }
 
-        public Task<GetAllCoursesDTOs?> GetByIdAsync(int id)
+        public GetAllCoursesDTOs GetById(int id)
         {
-            return _GeneralRepository.GetByIdAsync<GetAllCoursesDTOs>(id, c => new GetAllCoursesDTOs
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Description = c.Description,
-                CreditHours = c.CreditHours
-            });
+            var courseDto =  _GeneralRepository.GetById(id)
+                             .ProjectTo<GetAllCoursesDTOs>(_mapper.ConfigurationProvider)
+                             .FirstOrDefault();
+            return courseDto;
         }
 
         public async Task<bool> Create(CreateDTO courseDto)
         {
-            if (courseDto is null) return false;
-            var course = new Course
-            {
-                Name = courseDto.Name,
-                Description = courseDto.Description,
-                CreditHours = courseDto.CreditHours
-            };
-
-            await _GeneralRepository.CreateAsync(course).ConfigureAwait(false);
-            return true;
+            var course = _mapper.Map<Course>(courseDto);
+            return await _GeneralRepository.CreateAsync(course).ConfigureAwait(false);
         }
 
         public async Task<bool> Update(int id, UpdateCourseDto updatedCourse)
         {
+            var course = await _GeneralRepository.GetById(id).FirstOrDefaultAsync();
             if (updatedCourse == null)         return false;
-            var existing = await _GeneralRepository.GetByIdAsync(id);
-            if (existing == null)              return false;
-
-            existing.Id = id;
-            existing.Name = updatedCourse.Name;
-            existing.Description = updatedCourse.Description;
-            existing.CreditHours = updatedCourse.CreditHours;
-
-            await _GeneralRepository.UpdateAsync(existing).ConfigureAwait(false);
-            return true;
+            if (course == null)      return false;
+            //course.Name = updatedCourse.Name;
+            //course.Description = updatedCourse.Description;
+            //course.CreditHours = updatedCourse.CreditHours;
+            var course1 = _mapper.Map<Course>(updatedCourse);
+            var result = await _GeneralRepository.UpdateAsync(course).ConfigureAwait(false);
+            return result;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await this.GetByIdAsync(id).ConfigureAwait(false);
+            var existing =  this.GetById(id);
             if (existing == null) return false;
 
             await _GeneralRepository.DeleteAsync(id).ConfigureAwait(false);

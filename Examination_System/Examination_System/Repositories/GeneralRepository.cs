@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Examination_System.Data;
 using Examination_System.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Examination_System.Repositories
@@ -18,43 +19,48 @@ namespace Examination_System.Repositories
             _context = new Context();
             _entities = _context.Set<T>();
         }
+
         // get all
         public IQueryable<T> GetAll()
         {
-            return _entities.Where(e => !e.IsDeleted);
+            var querey = _entities.Where(e => !e.IsDeleted);
+            return querey;
         }
         public IQueryable<TDto>? GetAll<TDto>(Expression<Func<T, TDto>> selector)
         {
             return _entities.Where(e => !e.IsDeleted).Select(selector);
         }
         // get by id
-        public async Task<T?> GetByIdAsync(int id)
+        public  IQueryable<T> GetById(int id)
         {
-            return await _entities.Where(e => e.Id == id && !e.IsDeleted)
-                .FirstOrDefaultAsync()
-                .ConfigureAwait(false);
+            return  _entities.Where(e => e.Id == id && !e.IsDeleted) ;
         }
-        public async Task<TDto?> GetByIdAsync<TDto>(int id,Expression<Func<T,TDto>> selector)
-        {
-            return await _entities
-                .Where(e => e.Id == id && !e.IsDeleted)
-                .Select(selector)
-                .FirstOrDefaultAsync()
-                .ConfigureAwait(false);
-        }
+        // can i make task<iqueryable<T>>
+
+
+        //public async Task<TDto> GetByIdAsync<TDto>(int id, Expression<Func<T, TDto>> selector)
+        //{
+        //    return await _entities
+        //        .Where(e => e.Id == id && !e.IsDeleted)
+        //        .Select(selector)
+        //        .FirstOrDefaultAsync()
+        //        .ConfigureAwait(false);
+        //}
 
         // Create
-        public async Task CreateAsync(T entity)
+        public async Task<bool> CreateAsync(T entity)
         {
-            _entities.Add(entity);
+            await _entities.AddAsync(entity);
             await _context.SaveChangesAsync().ConfigureAwait(false);
+            return true;
         }
 
         // Update
-        public async Task UpdateAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
             _context.Update(entity);
             await _context.SaveChangesAsync().ConfigureAwait(false);
+            return true;
         }
 
         // Soft delete

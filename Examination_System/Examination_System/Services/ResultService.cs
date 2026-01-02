@@ -1,6 +1,9 @@
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Examination_System.DTOs.Results;
 using Examination_System.Models;
 using Examination_System.Repositories;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,66 +12,50 @@ namespace Examination_System.Services
     public class ResultService
     {
         private readonly GeneralRepository<Result> _generalRepository;
+        private readonly IMapper _mapper;
 
-        public ResultService()
+        public ResultService(IMapper mapper)
         {
+            _mapper = mapper;
             _generalRepository = new GeneralRepository<Result>();
         }
 
-        public IQueryable<GetAllResultsDTOs>? GetAll()
+        public IEnumerable<GetAllResultsDTOs>? GetAll()
         {
-            return _generalRepository.GetAll<GetAllResultsDTOs>(r => new GetAllResultsDTOs
-            {
-                Id = r.Id,
-                Score =r.Score,
-                StudentId = r.StudentExam == null ? (int?)null : r.StudentExam.StudentId,
-                ExamId = r.StudentExam == null ? (int?)null : r.StudentExam.ExamId
-            });
+            var query = _generalRepository.GetAll()
+                        .ProjectTo<GetAllResultsDTOs>(_mapper.ConfigurationProvider);
+            return query;
         }
 
-        public Task<GetAllResultsDTOs?> GetByIdAsync(int id)
+        public GetAllResultsDTOs GetById(int id)
         {
-            return _generalRepository.GetByIdAsync<GetAllResultsDTOs>(id, r => new GetAllResultsDTOs
-            {
-                Id = r.Id,
-                Score = r.Score,
-                StudentId = r.StudentExam == null ? (int?)null : r.StudentExam.StudentId,
-                ExamId = r.StudentExam == null ? (int?)null : r.StudentExam.ExamId
-            });
+            var dto = _generalRepository.GetById(id)
+                      .ProjectTo<GetAllResultsDTOs>(_mapper.ConfigurationProvider)
+                      .FirstOrDefault();
+            return dto;
         }
 
         public async Task<bool> Create(CreateResultDTO dto)
         {
-            if (dto is null) return false;
-
-            var result = new Result
-            {
-                Score = dto.Score
-                // If you need to create/associate a StudentExam entity,
-                // handle that in the service here (not shown).
-            };
-
-            await _generalRepository.CreateAsync(result).ConfigureAwait(false);
-            return true;
+            if (dto == null) return false;
+            var entity = _mapper.Map<Result>(dto);
+            return await _generalRepository.CreateAsync(entity).ConfigureAwait(false);
         }
 
-        public async Task<bool> Update(int id, UpdateResultDto updated)
+        public async Task<bool> Update(int id, UpdateResultDto dto)
         {
-            if (updated == null) return false;
+            if (dto == null) return false;
+            if (this.GetById(id) == null) return false;
 
-            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
-            if (existing == null) return false;
-
-            existing.Score = updated.Score;
-            // If you need to update StudentExam association, handle it explicitly here.
-
-            await _generalRepository.UpdateAsync(existing).ConfigureAwait(false);
-            return true;
+            var entity = _mapper.Map<Result>(dto);
+            entity.Id = id;
+            var result = await _generalRepository.UpdateAsync(entity).ConfigureAwait(false);
+            return result;
         }
 
         public async Task<bool> Delete(int id)
         {
-            var existing = await _generalRepository.GetByIdAsync(id).ConfigureAwait(false);
+            var existing = this.GetById(id);
             if (existing == null) return false;
 
             await _generalRepository.DeleteAsync(id).ConfigureAwait(false);
