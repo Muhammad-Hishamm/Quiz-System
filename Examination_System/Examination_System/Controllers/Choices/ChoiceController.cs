@@ -25,18 +25,18 @@ namespace Examination_System.Controllers.Choices
 
         // GET: api/Choice
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetChoiceViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetChoiceViewModel>>> Get()
         {
-            var dtos = _choiceService.GetAll();
+            var dtos =await _choiceService.GetAll();
             var vm = _mapper.Map<IEnumerable<GetChoiceViewModel>>(dtos);
             return new ResponseViewModel<IEnumerable<GetChoiceViewModel>> { Data = vm, IsSuccess = true, ErrorCode = Models.ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Choice/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetChoiceViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetChoiceViewModel>> GetById(int id)
         {
-            var dto = _choiceService.GetById(id);
+            var dto = await _choiceService.GetById(id);
             if (dto == null) return new ResponseViewModel<GetChoiceViewModel> { Data = null, IsSuccess = false, ErrorCode = Models.ErrorCode.InvalidCouseID, Message = "Choice not found." };
 
             var res = _mapper.Map<GetChoiceViewModel>(dto);

@@ -8,6 +8,8 @@ using Examination_System.DTOs.Questions;
 using Examination_System.DTOs.Students;
 using Examination_System.DTOs.Results;
 using Examination_System.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 
 namespace Examination_System
 {
@@ -41,11 +43,30 @@ namespace Examination_System
             builder.Services.AddScoped<ExamService>();
             builder.Services.AddScoped<FeedbackService>();
             builder.Services.AddScoped<QuestionService>();
+            builder.Services.AddScoped<ResultService>();
 
             builder.Services.AddSwaggerGen();
 
+            var key = Encoding.ASCII.GetBytes(Constants.SecretKey);
+            builder.Services.AddAuthentication(opt=>             
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt => {
+                    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key),
+                        ValidIssuer= "",
+                        ValidAudience= "",
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                    
+                    };
+                });
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
+            app.UseAuthentication();
+            //app.UseAuthorization();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

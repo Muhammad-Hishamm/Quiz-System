@@ -1,10 +1,8 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Examination_System.DTOs.Exams;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examination_System.Services
@@ -17,35 +15,30 @@ namespace Examination_System.Services
         public ExamService(IMapper mapper)
         {
             _mapper = mapper;
-            _generalRepository = new GeneralRepository<Exam>();
+            _generalRepository = new GeneralRepository<Exam>(_mapper);
         }
 
-        public IEnumerable<GetAllExamsDTOs>? GetAll()
+        public async Task<IEnumerable<GetAllExamsDTOs>> GetAll()
         {
-            var query = _generalRepository.GetAll()
-                        .ProjectTo<GetAllExamsDTOs>(_mapper.ConfigurationProvider);
-            return query;
+            return await _generalRepository.GetAll<GetAllExamsDTOs>().ConfigureAwait(false);
         }
 
-        public GetAllExamsDTOs GetById(int id)
+        public async Task<GetAllExamsDTOs> GetById(int id)
         {
-            var dto = _generalRepository.GetById(id)
-                      .ProjectTo<GetAllExamsDTOs>(_mapper.ConfigurationProvider)
-                      .FirstOrDefault();
-            return dto;
+            return await _generalRepository.GetById<GetAllExamsDTOs>(id).ConfigureAwait(false);
         }
 
         public async Task<bool> Create(CreateExamDTO examDto)
         {
             if (examDto == null) return false;
-            var exam = _mapper.Map<Exam>(examDto);
-            return await _generalRepository.CreateAsync(exam).ConfigureAwait(false);
+            return await _generalRepository.CreateAsync(examDto).ConfigureAwait(false);
         }
 
         public async Task<bool> Update(int id, UpdateExamDto updatedExam)
         {
             if (updatedExam == null) return false;
-            if (this.GetById(id) == null) return false;
+            var existing = await GetById(id).ConfigureAwait(false);
+            if (existing == null) return false;
 
             var exam = _mapper.Map<Exam>(updatedExam);
             exam.Id = id;
@@ -55,7 +48,7 @@ namespace Examination_System.Services
 
         public async Task<bool> Delete(int id)
         {
-            var existing = this.GetById(id);
+            var existing = await GetById(id).ConfigureAwait(false);
             if (existing == null) return false;
 
             await _generalRepository.DeleteAsync(id).ConfigureAwait(false);

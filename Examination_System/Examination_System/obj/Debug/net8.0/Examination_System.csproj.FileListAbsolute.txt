@@ -147,3 +147,4 @@ C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_Syste
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.pdb
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\Examination_System.genruntimeconfig.cache
 C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\obj\Debug\net8.0\ref\Examination_System.dll
+C:\Users\muham\OneDrive\Desktop\Quiz-System\Examination_System\Examination_System\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

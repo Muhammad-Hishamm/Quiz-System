@@ -25,18 +25,20 @@ namespace Examination_System.Controllers.Instructors
 
         // GET: api/Instructor
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetInstructorViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetInstructorViewModel>>> GetAll()
         {
-            var dtos = _instructorService.GetAll();
+            var dtos = await _instructorService.GetAll().ConfigureAwait(false);
             var vm = _mapper.Map<IEnumerable<GetInstructorViewModel>>(dtos);
-            return new ResponseViewModel<IEnumerable<GetInstructorViewModel>> { Data = vm, IsSuccess = true, ErrorCode = Models.ErrorCode.NoError, Message = string.Empty };
+            return new ResponseViewModel<IEnumerable<GetInstructorViewModel>> {
+                Data = vm, IsSuccess = true, ErrorCode = Models.ErrorCode.NoError, Message = string.Empty
+            };
         }
 
         // GET: api/Instructor/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetInstructorViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetInstructorViewModel>> GetById(int id)
         {
-            var dto = _instructorService.GetById(id);
+            var dto = await _instructorService.GetById(id);
             if (dto == null) return new ResponseViewModel<GetInstructorViewModel> { Data = null, IsSuccess = false, ErrorCode = Models.ErrorCode.InstructorNotFound, Message = "Instructor not found." };
 
             var vm = _mapper.Map<GetInstructorViewModel>(dto);

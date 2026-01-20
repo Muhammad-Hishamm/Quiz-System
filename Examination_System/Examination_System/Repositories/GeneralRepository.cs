@@ -1,10 +1,13 @@
-﻿using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Examination_System.Data;
+using Examination_System.DTOs.Courses;
 using Examination_System.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Examination_System.Repositories
 {
@@ -12,44 +15,46 @@ namespace Examination_System.Repositories
     {
         private readonly Context _context;
         private readonly DbSet<T> _entities;
-        private bool _disposed;
+        private readonly IMapper _mapper;
 
-        public GeneralRepository()
+        public GeneralRepository(IMapper mapper)
         {
             _context = new Context();
             _entities = _context.Set<T>();
+            _mapper = mapper;
         }
 
-        // get all
-        public IQueryable<T> GetAll()
+
+        public async Task<IEnumerable<TDto>> GetAll<TDto>(Expression<Func<T, bool>>? filter = null)
         {
-            var querey = _entities.Where(e => !e.IsDeleted);
-            return querey;
+            filter ??= (Expression<Func<T, bool>>)(_ => true);
+
+            var query = _entities.Where(e => !e.IsDeleted)
+                                 .Where(filter); 
+
+            var ret = await query
+                .ProjectTo<TDto>(_mapper.ConfigurationProvider)
+                .ToListAsync()
+                .ConfigureAwait(false);
+
+            return ret;
         }
-        public IQueryable<TDto>? GetAll<TDto>(Expression<Func<T, TDto>> selector)
-        {
-            return _entities.Where(e => !e.IsDeleted).Select(selector);
-        }
+
         // get by id
-        public  IQueryable<T> GetById(int id)
+        public  async Task<TDto?> GetById<TDto>(int id)
         {
-            return  _entities.Where(e => e.Id == id && !e.IsDeleted) ;
+            var ret = await _entities.Where(e => e.Id == id && !e.IsDeleted)
+                            .ProjectTo<TDto>(_mapper.ConfigurationProvider)
+                            .FirstOrDefaultAsync()
+                            .ConfigureAwait(false);
+            return ret;
         }
-        // can i make task<iqueryable<T>>
 
-
-        //public async Task<TDto> GetByIdAsync<TDto>(int id, Expression<Func<T, TDto>> selector)
-        //{
-        //    return await _entities
-        //        .Where(e => e.Id == id && !e.IsDeleted)
-        //        .Select(selector)
-        //        .FirstOrDefaultAsync()
-        //        .ConfigureAwait(false);
-        //}
 
         // Create
-        public async Task<bool> CreateAsync(T entity)
+        public async Task<bool> CreateAsync<DTO>(DTO dto)
         {
+            T entity = _mapper.Map<T>(dto);
             await _entities.AddAsync(entity);
             await _context.SaveChangesAsync().ConfigureAwait(false);
             return true;
@@ -76,5 +81,6 @@ namespace Examination_System.Repositories
                 await _context.SaveChangesAsync().ConfigureAwait(false);
             }
         }
+
     }
 }

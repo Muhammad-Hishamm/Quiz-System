@@ -215,10 +215,19 @@
         }
       }
     },
-    "/api/Course": {
+    "/Course/GetAll": {
       "get": {
         "tags": [
           "Course"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -242,7 +251,49 @@
             }
           }
         }
-      },
+      }
+    },
+    "/Course/GetById/{id}": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Course/Create": {
       "post": {
         "tags": [
           "Course"
@@ -290,45 +341,7 @@
         }
       }
     },
-    "/api/Course/{id}": {
-      "get": {
-        "tags": [
-          "Course"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetCoursesViewModelResponseViewModel"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/Course/Update/{id}": {
       "put": {
         "tags": [
           "Course"
@@ -385,7 +398,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/Course/Delete/{id}": {
       "delete": {
         "tags": [
           "Course"
@@ -1051,6 +1066,34 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Login/Login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "parameters": [
+          {
+            "name": "Username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Password",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Examination_System.DTOs.Courses;
 using Examination_System.DTOs.Instructors;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Examination_System.Services
@@ -17,21 +19,17 @@ namespace Examination_System.Services
         public InstructorService(IMapper mapper)
         {
             _mapper = mapper;
-            _generalRepository = new GeneralRepository<Instructor>();
+            _generalRepository = new GeneralRepository<Instructor>(_mapper);
         }
 
-        public IEnumerable<GetAllInstructorsDTOs>? GetAll()
+        public async Task<IEnumerable<GetAllInstructorsDTOs>> GetAll(Expression<Func<Instructor, bool>>? filter = null)
         {
-            var query = _generalRepository.GetAll()
-                        .ProjectTo<GetAllInstructorsDTOs>(_mapper.ConfigurationProvider);
-            return query;
+            return await _generalRepository.GetAll<GetAllInstructorsDTOs>(filter);
         }
 
-        public GetAllInstructorsDTOs GetById(int id)
+        public async Task<GetAllInstructorsDTOs> GetById(int id)
         {
-            var dto = _generalRepository.GetById(id)
-                       .ProjectTo<GetAllInstructorsDTOs>(_mapper.ConfigurationProvider)
-                       .FirstOrDefault();
+            var dto =await _generalRepository.GetById<GetAllInstructorsDTOs>(id);
             return dto;
         }
 

@@ -29,18 +29,18 @@ namespace Examination_System.Controllers.Exams
 
         // GET: api/Exam
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetExamViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetExamViewModel>>> Get()
         {
-            var dtos = _examService.GetAll();
+            var dtos =await _examService.GetAll();
             var vm = _mapper.Map<IEnumerable<GetExamViewModel>>(dtos);
             return new ResponseViewModel<IEnumerable<GetExamViewModel>> { Data = vm, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Exam/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetExamViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetExamViewModel>> GetById(int id)
         {
-            var dto = _examService.GetById(id);
+            var dto =await _examService.GetById(id);
             if (dto == null) return new ResponseViewModel<GetExamViewModel> { Data = null, IsSuccess = false, ErrorCode = ErrorCode.CourseNotFound, Message = "Exam not found." };
 
             var res = _mapper.Map<GetExamViewModel>(dto);

@@ -24,18 +24,18 @@ namespace Examination_System.Controllers.Students
 
         // GET: api/Student
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetStudentViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetStudentViewModel>>> Get()
         {
-            var dtos = _studentService.GetAll();
+            var dtos = await _studentService.GetAll();
             var vm = _mapper.Map<IEnumerable<GetStudentViewModel>>(dtos);
             return new ResponseViewModel<IEnumerable<GetStudentViewModel>> { Data = vm, IsSuccess = true, ErrorCode = Models.ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Student/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetStudentViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetStudentViewModel>> GetById(int id)
         {
-            var dto = _studentService.GetById(id);
+            var dto =await _studentService.GetById(id);
             if (dto == null)
             {
                 return new ResponseViewModel<GetStudentViewModel> { Data = null, IsSuccess = false, ErrorCode = Models.ErrorCode.StudentNotFound, Message = "Student not found." };

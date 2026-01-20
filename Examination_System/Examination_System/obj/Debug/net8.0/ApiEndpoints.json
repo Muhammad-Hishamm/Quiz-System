@@ -129,135 +129,6 @@
     ]
   },
   {
-    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
-    "Method": "Get",
-    "RelativePath": "api/Course",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
-    "Method": "Create",
-    "RelativePath": "api/Course",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "course",
-        "Type": "Examination_System.ViewModels.Course.CreateCourseViewModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
-    "Method": "GetById",
-    "RelativePath": "api/Course/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
-    "Method": "Update",
-    "RelativePath": "api/Course/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "updatedCourse",
-        "Type": "Examination_System.ViewModels.Course.UpdateCourseViewModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
-    "Method": "Delete",
-    "RelativePath": "api/Course/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "Examination_System.Controllers.Exams.ExamController",
     "Method": "Get",
     "RelativePath": "api/Exam",
@@ -517,7 +388,7 @@
   },
   {
     "ContainingType": "Examination_System.Controllers.Instructors.InstructorController",
-    "Method": "Get",
+    "Method": "GetAll",
     "RelativePath": "api/Instructor",
     "HttpMethod": "GET",
     "IsController": true,
@@ -645,8 +516,29 @@
     ]
   },
   {
+    "ContainingType": "Examination_System.Controllers.Login.LoginController",
+    "Method": "Login",
+    "RelativePath": "api/Login/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Examination_System.Controllers.Questions.QuestionController",
-    "Method": "Get",
+    "Method": "GetAll",
     "RelativePath": "api/Question",
     "HttpMethod": "GET",
     "IsController": true,
@@ -1016,6 +908,141 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Create",
+    "RelativePath": "Course/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "course",
+        "Type": "Examination_System.ViewModels.Course.CreateCourseViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Delete",
+    "RelativePath": "Course/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "GetAll",
+    "RelativePath": "Course/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[System.Collections.Generic.IEnumerable\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "GetById",
+    "RelativePath": "Course/GetById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Examination_System.ViewModels.ResponseViewModel\u00601[[Examination_System.ViewModels.Course.GetCoursesViewModel, Examination_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Examination_System.Controllers.Courses.CourseController",
+    "Method": "Update",
+    "RelativePath": "Course/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedCourse",
+        "Type": "Examination_System.ViewModels.Course.UpdateCourseViewModel",
         "IsRequired": true
       }
     ],

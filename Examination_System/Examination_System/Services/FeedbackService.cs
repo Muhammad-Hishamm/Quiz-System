@@ -1,10 +1,8 @@
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Examination_System.DTOs.Feedbacks;
 using Examination_System.Models;
 using Examination_System.Repositories;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Examination_System.Services
@@ -17,35 +15,30 @@ namespace Examination_System.Services
         public FeedbackService(IMapper mapper)
         {
             _mapper = mapper;
-            _repository = new GeneralRepository<Feedback>();
+            _repository = new GeneralRepository<Feedback>(_mapper);
         }
 
-        public IEnumerable<GetAllFeedbacksDTOs>? GetAll()
+        public async Task<IEnumerable<GetAllFeedbacksDTOs>> GetAll()
         {
-            var query = _repository.GetAll()
-                        .ProjectTo<GetAllFeedbacksDTOs>(_mapper.ConfigurationProvider);
-            return query;
+            return await _repository.GetAll<GetAllFeedbacksDTOs>().ConfigureAwait(false);
         }
 
-        public GetAllFeedbacksDTOs GetById(int id)
+        public async Task<GetAllFeedbacksDTOs> GetById(int id)
         {
-            var dto = _repository.GetById(id)
-                      .ProjectTo<GetAllFeedbacksDTOs>(_mapper.ConfigurationProvider)
-                      .FirstOrDefault();
-            return dto;
+            return await _repository.GetById<GetAllFeedbacksDTOs>(id).ConfigureAwait(false);
         }
 
         public async Task<bool> Create(CreateFeedbackDTO dto)
         {
             if (dto == null) return false;
-            var entity = _mapper.Map<Feedback>(dto);
-            return await _repository.CreateAsync(entity).ConfigureAwait(false);
+            return await _repository.CreateAsync(dto).ConfigureAwait(false);
         }
 
         public async Task<bool> Update(int id, UpdateFeedbackDto dto)
         {
             if (dto == null) return false;
-            if (this.GetById(id) == null) return false;
+            var existing = await GetById(id).ConfigureAwait(false);
+            if (existing == null) return false;
 
             var entity = _mapper.Map<Feedback>(dto);
             entity.Id = id;
@@ -55,7 +48,7 @@ namespace Examination_System.Services
 
         public async Task<bool> Delete(int id)
         {
-            var existing = this.GetById(id);
+            var existing = await GetById(id).ConfigureAwait(false);
             if (existing == null) return false;
 
             await _repository.DeleteAsync(id).ConfigureAwait(false);

@@ -25,18 +25,18 @@ namespace Examination_System.Controllers.Results
 
         // GET: api/Result
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetResultViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetResultViewModel>>> Get()
         {
-            var dtos = _resultService.GetAll();
+            var dtos = await _resultService.GetAll().ConfigureAwait(false);
             var vm = _mapper.Map<IEnumerable<GetResultViewModel>>(dtos);
             return new ResponseViewModel<IEnumerable<GetResultViewModel>> { Data = vm, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Result/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetResultViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetResultViewModel>> GetById(int id)
         {
-            var dto = _resultService.GetById(id);
+            var dto = await _resultService.GetById(id).ConfigureAwait(false);
             if (dto == null) return new ResponseViewModel<GetResultViewModel> { Data = null, IsSuccess = false, ErrorCode = ErrorCode.CourseNotFound, Message = "Result not found." };
 
             var res = _mapper.Map<GetResultViewModel>(dto);

@@ -19,22 +19,19 @@ namespace Examination_System.Services
         public ChoiceService(IMapper mapper)
         {
             _mapper = mapper;
-            _choiceRepository = new GeneralRepository<Choice>();
-            _questionChoiceRepository = new GeneralRepository<QuestionChoice>();
+            _choiceRepository = new GeneralRepository<Choice>(_mapper);
+            _questionChoiceRepository = new GeneralRepository<QuestionChoice>(_mapper);
         }
 
-        public IEnumerable<GetAllChoicesDTOs>? GetAll()
+        public async Task<IEnumerable<GetAllChoicesDTOs>?> GetAll()
         {
-            var query = _choiceRepository.GetAll()
-                        .ProjectTo<GetAllChoicesDTOs>(_mapper.ConfigurationProvider);
+            var query =await _choiceRepository.GetAll<GetAllChoicesDTOs>(null);
             return query;
         }
 
-        public GetAllChoicesDTOs GetById(int id)
+        public async Task<GetAllChoicesDTOs> GetById(int id)
         {
-            var dto = _choiceRepository.GetById(id)
-                      .ProjectTo<GetAllChoicesDTOs>(_mapper.ConfigurationProvider)
-                      .FirstOrDefault();
+            var dto = await _choiceRepository.GetById<GetAllChoicesDTOs>(id);
             return dto;
         }
 
@@ -67,11 +64,10 @@ namespace Examination_System.Services
             if (this.GetById(id) == null) return false;
 
             var choice = _mapper.Map<Choice>(updatedChoice);
-            choice.Id = id;
             var result = await _choiceRepository.UpdateAsync(choice).ConfigureAwait(false);
 
             // Update question-choice mapping: remove existing mappings and add new one if provided
-            var existingQCs = _questionChoiceRepository.GetAll().Where(q => q.ChoiceId == id).ToList();
+            var existingQCs =await _questionChoiceRepository.GetAll<QuestionChoice>(q => q.ChoiceId == id);
             foreach (var qc in existingQCs)
             {
                 await _questionChoiceRepository.DeleteAsync(qc.Id).ConfigureAwait(false);
@@ -99,7 +95,7 @@ namespace Examination_System.Services
             await _choiceRepository.DeleteAsync(id).ConfigureAwait(false);
 
             // Soft-delete any question-choice mappings
-            var existingQCs = _questionChoiceRepository.GetAll().Where(q => q.ChoiceId == id).ToList();
+            var existingQCs =await _questionChoiceRepository.GetAll<QuestionChoice>(q => q.ChoiceId == id);
             foreach (var qc in existingQCs)
             {
                 await _questionChoiceRepository.DeleteAsync(qc.Id).ConfigureAwait(false);

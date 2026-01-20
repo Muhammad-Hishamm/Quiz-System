@@ -25,18 +25,19 @@ namespace Examination_System.Controllers.Feedbacks
 
         // GET: api/Feedback
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetFeedbackViewModel>> Get()
+        public async Task<ResponseViewModel<IEnumerable<GetFeedbackViewModel>>> Get()
         {
-            var dtos = _feedbackService.GetAll();
+            var dtos =await _feedbackService.GetAll();
             var vm = _mapper.Map<IEnumerable<GetFeedbackViewModel>>(dtos);
             return new ResponseViewModel<IEnumerable<GetFeedbackViewModel>> { Data = vm, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Feedback/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetFeedbackViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetFeedbackViewModel>> GetById(int id)
         {
-            var dto = _feedback_service_wrapper(id);
+            //var dto = _feedback_service_wrapper(id);
+            var dto = await _feedbackService.GetById(id);
             if (dto == null) return new ResponseViewModel<GetFeedbackViewModel> { Data = null, IsSuccess = false, ErrorCode = ErrorCode.CourseNotFound, Message = "Feedback not found." };
 
             var res = _mapper.Map<GetFeedbackViewModel>(dto);
@@ -66,7 +67,7 @@ namespace Examination_System.Controllers.Feedbacks
             return new ResponseViewModel<bool> { Data = ok, IsSuccess = ok, ErrorCode = ok ? ErrorCode.NoError : ErrorCode.CourseNotFound, Message = ok ? string.Empty : "Feedback not found." };
         }
 
-        // small private wrapper to avoid accidental naming collisions in mapping
-        private GetAllFeedbacksDTOs _feedback_service_wrapper(int id) => _feedbackService.GetById(id);
+         //small private wrapper to avoid accidental naming collisions in mapping
+        //private GetAllFeedbacksDTOs _feedback_service_wrapper(int id) => _feedbackService.GetById(id);
     }
 }

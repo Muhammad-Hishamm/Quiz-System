@@ -4,41 +4,49 @@ using Examination_System.Models;
 using Examination_System.Services;
 using Examination_System.ViewModels;
 using Examination_System.ViewModels.Course;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Examination_System.Controllers.Courses
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[Action]")]
     [ApiController]
     public class CourseController : ControllerBase
     {
         private readonly CourseService _courseService;
-        IMapper _mapper;
-        public CourseController(IMapper mapper)
+        private readonly IMapper _mapper;
+
+        public CourseController(CourseService courseService, IMapper mapper)
         {
+            _courseService = courseService;
             _mapper = mapper;
-            _courseService = new CourseService(_mapper);
         }
 
-        // GET: api/Course
+        // GET: api/Course?name=math&departmentId=1
         [HttpGet]
-        public ResponseViewModel<IEnumerable<GetCoursesViewModel>> Get()
+        [Authorize]
+        public async Task<ResponseViewModel<IEnumerable<GetCoursesViewModel>>> GetAll([FromQuery] string? name = null)
         {
-            var query = _courseService.GetAll(); 
-            var res = _mapper.Map<IEnumerable<GetCoursesViewModel>>(query);
-            return new ResponseViewModel<IEnumerable<GetCoursesViewModel>>() { Data = res, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = "" };
+            Expression<Func<Course, bool>>? filter = null;
+
+            var dtos = await _courseService.GetAll(filter).ConfigureAwait(false);
+            var vm = _mapper.Map<IEnumerable<GetCoursesViewModel>>(dtos);
+            return new ResponseViewModel<IEnumerable<GetCoursesViewModel>> { Data = vm, IsSuccess = true, ErrorCode = ErrorCode.NoError, Message = string.Empty };
         }
 
         // GET: api/Course/1
         [HttpGet("{id}")]
-        public ResponseViewModel<GetCoursesViewModel> GetById(int id)
+        public async Task<ResponseViewModel<GetCoursesViewModel>> GetById(int id)
         {
-            var entityDTO =  _courseService.GetById(id);
+            var entityDTO = await _courseService.GetById(id);
+            if(entityDTO == null)
+            {
+                return new ResponseViewModel<GetCoursesViewModel>() { Data = null, IsSuccess = false, ErrorCode = ErrorCode.CourseNotFound, Message = "Course not found." };
+            }
             var res =  _mapper.Map<GetCoursesViewModel>(entityDTO);
             return new ResponseViewModel<GetCoursesViewModel>() { Data= res, IsSuccess=true,ErrorCode = ErrorCode.NoError,Message=""};
         }
@@ -46,6 +54,10 @@ namespace Examination_System.Controllers.Courses
         [HttpPost]
         public async Task<ResponseViewModel<bool>> Create(CreateCourseViewModel course)
         {   
+            if (course == null)
+            {
+                return new ResponseViewModel<bool>() { Data = false, IsSuccess = false, ErrorCode = ErrorCode.BadRequest, Message = "Invalid course data." };
+            }
             var CourseDto = _mapper.Map<CreateDTO>(course);
             var ok = await _courseService.Create(CourseDto).ConfigureAwait(false);
             return new ResponseViewModel<bool>() { Data = ok, IsSuccess = ok, ErrorCode = ok ? ErrorCode.NoError : ErrorCode.BadRequest, Message = ok ? "" : "Failed to create course." };
